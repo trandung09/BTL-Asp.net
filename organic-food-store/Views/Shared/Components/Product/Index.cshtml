@@ -1,0 +1,373 @@
+﻿@{
+    var listP4 = (List<Sp>) ViewBag.listP4;
+    var listP5 = (List<Sp>) ViewBag.listP5;
+    var listP6 = (List<Sp>) ViewBag.listP6;
+    var listP7 = (List<Sp>) ViewBag.listP7;
+    var listP9 = (List<Sp>) ViewBag.listP9;
+    var listP10 = (List<Sp>) ViewBag.listP10;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Rau hữu cơ</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="4">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP4)
+            {
+                <div class="col-lg-3">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                        <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                            @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                        </div>
+                    </a>
+                    <div class="featured__item__text">
+                        <h6><a href="#">@item.Ten</a></h6>
+                        <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                        <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                            <button>
+                                <span>THÊM VÀO GIỎ</span>
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Rau củ an toàn</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="5">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP5)
+            {
+                if (item.KhuyenMai == 5)
+                {
+                    <div class="col-lg-3">
+                        <div class="sale">
+                            - 5%
+                        </div>
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            @if (item.KhuyenMai == null)
+                            {
+                                <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            }
+                            else
+                            {
+                                decimal km = Convert.ToDecimal(item.Gia * (100 - item.KhuyenMai) / 100);
+                                <h5>@km.ToString("##,#")₫ <del>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</del></h5>
+                            }
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-3">
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Thịt cá dân dã</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="6">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP6)
+            {
+                <div class="col-lg-3">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                        <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                            @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                        </div>
+                    </a>
+                    <div class="featured__item__text">
+                        <h6><a href="#">@item.Ten</a></h6>
+                        <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                        <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                            <button>
+                                <span>THÊM VÀO GIỎ</span>
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Trái cây</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="7">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP7)
+            {
+                <div class="col-lg-3">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                        <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                            @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                        </div>
+                    </a>
+                    <div class="featured__item__text">
+                        <h6><a href="#">@item.Ten</a></h6>
+                        <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                        <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                            <button>
+                                <span>THÊM VÀO GIỎ</span>
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Hải sản</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="9">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP9)
+            {
+                if (item.KhuyenMai == 3)
+                {
+                    <div class="col-lg-3">
+                        <div class="sale">
+                            - 3%
+                        </div>
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            @if (item.KhuyenMai == null)
+                            {
+                                <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            }
+                            else
+                            {
+                                decimal km = Convert.ToDecimal(item.Gia * (100 - item.KhuyenMai) / 100);
+                                <h5>@km.ToString("##,#")₫ <del>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</del></h5>
+                            }
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else if (item.KhuyenMai == 16)
+                {
+                    <div class="col-lg-3">
+                        <div class="sale">
+                            - 16%
+                        </div>
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            @if (item.KhuyenMai == null)
+                            {
+                                <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            }
+                            else
+                            {
+                                decimal km = Convert.ToDecimal(item.Gia * (100 - item.KhuyenMai) / 100);
+                                <h5>@km.ToString("##,#")₫ <del>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</del></h5>
+                            }
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else if (item.KhuyenMai == 5)
+                {
+                    <div class="col-lg-3">
+                        <div class="sale">
+                            - 5%
+                        </div>
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            @if (item.KhuyenMai == null)
+                            {
+                                <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            }
+                            else
+                            {
+                                decimal km = Convert.ToDecimal(item.Gia * (100 - item.KhuyenMai) / 100);
+                                <h5>@km.ToString("##,#")₫ <del>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</del></h5>
+                            }
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-3">
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                            <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                                @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                            </div>
+                        </a>
+                        <div class="featured__item__text">
+                            <h6><a href="#">@item.Ten</a></h6>
+                            @if (item.KhuyenMai == null)
+                            {
+                                <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                            }
+                            else
+                            {
+                                decimal km = Convert.ToDecimal(item.Gia * (100 - item.KhuyenMai) / 100);
+                                <h5>@km.ToString("##,#") <del>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</del></h5>
+                            }
+                            <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                                <button>
+                                    <span>THÊM VÀO GIỎ</span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2>Hàng khô</h2>
+            </div>
+            <div class="xemthem">
+                <a class="linkxemthem" asp-action="StoreGrid" asp-controller="Product" asp-route-id="10">Xem thêm >>></a>
+            </div>
+        </div>
+    </div>
+    <div class="row featured__filter">
+        <div class="categories__slider owl-carousel">
+            @foreach (var item in listP10)
+            {
+                <div class="col-lg-3">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
+                        <div class="categories__item set-bg" data-setbg="@item.AnhNho">
+                            @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
+                        </div>
+                    </a>
+                    <div class="featured__item__text">
+                        <h6><a href="#">@item.Ten</a></h6>
+                        <h5>@Convert.ToDecimal(@item.Gia).ToString("##,#")₫</h5>
+                        <form asp-action="AddCartItem" asp-controller="Cart" asp-route-id="@item.Ma" asp-route-quantity="1" method="post">
+                            <button>
+                                <span>THÊM VÀO GIỎ</span>
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿﻿@{
+    ViewBag.Title = "Cửa hàng thực phẩm sạch Good-Market";
+}
+
+<section class="categories">
+    @await Component.InvokeAsync("HomeSlice")
+ </section>
+ <section class="featured spad">
+     @await Component.InvokeAsync("Product")
+ </section>
+ <section class="from-blog spad">
+     @await Component.InvokeAsync("Blog")
+ </section>
