@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add use settings.json and secrets
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-//builder.Configuration.AddUserSecrets<Program>(optional: true);
+builder.Configuration.AddUserSecrets<Program>(optional: true);
 
 builder.Services.AddDbContext<OrganicFoodStoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("OrganicFoodStore"))
