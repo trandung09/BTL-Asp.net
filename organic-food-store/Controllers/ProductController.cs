@@ -21,9 +21,7 @@ namespace organic_food_store.Controllers
         {
             var product = _dbContext.Sps.Find(id);
 
-            ViewBag.pSameType = _dbContext.Sps.Where(p => p.MaLoai == product.MaLoai)
-                .Take(4)
-                .ToList();
+            ViewBag.pSameType = _dbContext.Sps.Where(p => p.MaLoai == product.MaLoai).Take(4).ToList();
 
             return View(product);
         }
