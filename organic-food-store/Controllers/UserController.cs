@@ -66,15 +66,16 @@ namespace organic_food_store.Controllers
         [HttpPost]
         public ActionResult LogIn(string email, string password)
         {
-            var users = _dbContext.KhachHangs.Where(u => u.Email == email && u.Password == password).ToList();
+            var users = _dbContext.KhachHangs.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).ToList();
 
             if (users.Count > 0)
             {
                 // HttpContext.Session["UserName"] = users.FirstOrDefault().Ten;
                 string userName = users.FirstOrDefault().Ten;
+                Console.WriteLine(userName);
                 HttpContext.Session.SetString("UserName", userName);
 
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.message = "Tài khoản hoặc mật khẩu không chính xác! Vui lòng nhập lại.";
