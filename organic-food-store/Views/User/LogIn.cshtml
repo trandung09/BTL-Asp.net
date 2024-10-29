@@ -24,16 +24,16 @@
         </div>
     </div>
     <div class="dktk">
-        @if (ViewBag.ms1 != null)
+        @if (ViewBag.message != null)
         {
-            <div class="thongbao alert alert-danger">@ViewBag.ms1</div>
+            <div class="thongbao alert alert-danger">@ViewBag.message</div>
         }
-        <form asp-action="Login" asp-controller="User" method="post">
+        <form asp-action="LogIn" asp-controller="User" method="post">
             <div class="form-group">
-                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="txtemail" required placeholder="Email">
+                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" required placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="txtpassword" required placeholder="Mật khẩu">
+                <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" required placeholder="Mật khẩu">
             </div>
             <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng nhập" />
             <br />
