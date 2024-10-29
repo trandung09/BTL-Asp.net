@@ -1,4 +1,8 @@
-﻿<div class="container">
+﻿@using organic_food_store.Models;
+@using Microsoft.AspNetCore.Mvc;
+@using Newtonsoft.Json;
+
+<div class="container">
     <div class="row">
         <div class="col-lg-2">
             <div class="header__logo">
@@ -48,34 +52,38 @@
                 </ul>
             </nav>
         </div>
-        @*<div class="col-lg-2">
+        <div class="col-lg-2">
             <div class="header__cart">
                 @{
-                    List<GioHang> dsgh = (List<GioHang>)Session["dsgh"];
+                    string jsonCart = Context.Session.GetString("Cart");
+                    var cart = jsonCart == null ? null : JsonConvert.DeserializeObject<List<CartItem>>(jsonCart);
                 }
                 <ul>
-                    @if (dsgh != null)
+                    @if (cart != null)
                     {
-                        <li><a href="@Url.Action("XemGioHang","GioHang")"><i class="fa fa-shopping-bag"></i> <span>@dsgh.Count</span></a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-shopping-bag"></i> <span>@cart.Count</span></a>
+                        </li>
                     }
                     else
                     {
                         <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>0</span></a></li>
                     }
                 </ul>
-                @if (dsgh != null)
+                @if (cart != null)
                 {
                     var tongtien = 0.0;
-                    foreach (var item in dsgh)
+
+                    foreach (var item in cart)
                     {
-                        if (item.Spham.KhuyenMai == null)
+                        if (item.Product.KhuyenMai == null)
                         {
-                            tongtien = tongtien + (double)item.Spham.Gia * item.SoLuong;
+                            tongtien = tongtien + (double)item.Product.Gia * item.Quantity;
                         }
                         else
                         {
-                            double km = Convert.ToDouble(item.Spham.Gia * (100 - item.Spham.KhuyenMai) / 100);
-                            double km1 = km * item.SoLuong;
+                            double km = Convert.ToDouble(item.Product.Gia * (100 - item.Product.KhuyenMai) / 100);
+                            double km1 = km * item.Quantity;
                             tongtien = tongtien + km1;
                         }
 
@@ -86,8 +94,6 @@
                             @Convert.ToDecimal(tongtien).ToString("##,#")
                         </span>
                     </div>
-
-
                 }
                 else
                 {
@@ -95,7 +101,7 @@
                 }
 
             </div>
-        </div>*@
+        </div>
     </div>
     <div class="humberger__open">
         <i class="fa fa-bars"></i>
