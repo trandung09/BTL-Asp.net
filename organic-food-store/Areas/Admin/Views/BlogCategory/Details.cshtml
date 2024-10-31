@@ -1,36 +1,39 @@
-﻿@model organic_food_store.Models.ChuyenMuc
+﻿@model ChuyenMuc
 
 @{
-    ViewData["Title"] = "Details";
+    ViewBag.Title = "Admin - Chi tiết chuyên mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h2>Details</h2>
 
 <div>
-    <h4>ChuyenMuc</h4>
+    <h4>Chuyen Muc</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ten)
+    <dl class="dl-horizontal">
+        <dt>
+            Tên
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ten)
+        <dd>
+            <span asp-for="@Model.Ten"></span>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mota)
+
+        <dt>
+            Mô tả
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mota)
+        <dd>
+            <span asp-for="@Model.Mota"></span>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaCt)
+
+        <dt>
+            Mã CT
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaCt)
+        <dd>
+            <span asp-for="@Model.MaCt"></span>
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Ma">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<p>
+    <a asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@Model.Ma" class="btn btn-primary">Sửa</a> |
+    <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-success">Trở về danh sách</a>
+</p>

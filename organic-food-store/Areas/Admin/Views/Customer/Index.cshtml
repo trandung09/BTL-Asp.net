@@ -1,0 +1,58 @@
+﻿@model IEnumerable<KhachHang>
+
+@{
+    ViewBag.Title = "Admin - Danh sách khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách khách hàng</h2>
+
+<p>
+    <a asp-area="Admin" asp-action="Create" asp-controller="Customer" class="btn btn-success">Thêm thông tin khách hàng</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Mật khẩu
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Customer" asp-route-id="@item.Ma">Sửa</a>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.Ma">=Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>

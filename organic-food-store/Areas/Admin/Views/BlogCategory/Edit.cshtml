@@ -1,44 +1,49 @@
-﻿@model organic_food_store.Models.ChuyenMuc
+﻿@model ChuyenMuc
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewBag.Title = "Admin - Sửa chuyên mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h2>Sửa chuyên mục</h2>
 
-<h4>ChuyenMuc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Ma" />
-            <div class="form-group">
-                <label asp-for="Ten" class="control-label"></label>
-                <input asp-for="Ten" class="form-control" />
-                <span asp-validation-for="Ten" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mota" class="control-label"></label>
-                <input asp-for="Mota" class="form-control" />
-                <span asp-validation-for="Mota" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaCt" class="control-label"></label>
-                <input asp-for="MaCt" class="form-control" />
-                <span asp-validation-for="MaCt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" method="post" class="form-horizontal">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.Ma" />
+
+    <div class="form-group">
+        <label asp-for="Ten" class="control-label col-md-2"><b>Tên</b></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Ten" class="form-control" />
+            <span asp-validation-for="@Model.Ten" class="text-danger"></span>
+        </div>
     </div>
-</div>
+
+    <div class="form-group">
+        <label asp-for="Mota" class="control-label col-md-2"><b>Mô tả</b></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Mota" class="form-control" />
+            <span asp-validation-for="@Model.Mota" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.MaCt" class="control-label col-md-2"><b>Mã CT</b></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.MaCt" class="form-control" />
+            <span asp-validation-for="@Model.MaCt" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-success">Lưu</button>
+        </div>
+    </div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-success">Trở về danh sách</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

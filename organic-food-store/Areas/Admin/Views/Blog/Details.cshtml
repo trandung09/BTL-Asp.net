@@ -1,72 +1,91 @@
-﻿@model organic_food_store.Models.TinTuc
+﻿@model TinTuc
 
 @{
-    ViewData["Title"] = "Details";
+    ViewBag.Title = "Admin - Chi tiết tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h2>Details</h2>
 
 <div>
-    <h4>TinTuc</h4>
+    <h4>Tin Tuc</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCm)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.MotaNgan)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.MotaNgan)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.Mota)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.Mota)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.NgayDang)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.NgayDang)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.Anh)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.Anh)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.NguoiDang)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.NguoiDang)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.TieuBieu)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.TieuBieu)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.LoaiTin)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.LoaiTin)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TieuDe)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCmNavigation.Ten)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TieuDe)
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCmNavigation.Ten)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaCmNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaCmNavigation.Ma)
-        </dd>
+
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Ma">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<p>
+    <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Blog" asp-route-id="@Model.Ma">Sửa</a>
+    <a class="btn btn-success" asp-area="Admin" asp-action="Index" , asp-controller="Blog">Quay lại danh sách</a>
+</p>

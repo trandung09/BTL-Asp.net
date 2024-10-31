@@ -1,47 +1,48 @@
-﻿@model IEnumerable<organic_food_store.Models.ChuyenMuc>
+﻿@model IEnumerable<ChuyenMuc>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Admin - Chuyên mục tin tức";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-area="Admin" asp-action="Create" asp-controller="BlogCategory">Thêm chuyên mục mới</a>
 </p>
+
 <table class="table">
-    <thead>
+    <tr>
+        <th>
+            Tên chuyên mục
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Mã CT
+        </th>
+        <th>
+            Chức năng
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ten)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mota)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaCt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ten)
+                @item.Ten
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mota)
+                @Html.Raw(item.Mota)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaCt)
+                @item.MaCt
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Ma">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Ma">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Ma">Delete</a>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Sửa</a> |
+                <a class="btn btn-success" asp-area="Admin" asp-action="Details" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Chi tiết</a> |
+                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Xóa</a>
             </td>
         </tr>
-}
-    </tbody>
+    }
 </table>

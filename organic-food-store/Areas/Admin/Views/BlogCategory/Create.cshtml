@@ -1,43 +1,47 @@
-﻿@model organic_food_store.Models.ChuyenMuc
+﻿@model ChuyenMuc
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "Admin - Thêm mới chuyên mục";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h2>Thêm chuyên mục mới</h2>
 
-<h4>ChuyenMuc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Ten" class="control-label"></label>
-                <input asp-for="Ten" class="form-control" />
-                <span asp-validation-for="Ten" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mota" class="control-label"></label>
-                <input asp-for="Mota" class="form-control" />
-                <span asp-validation-for="Mota" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaCt" class="control-label"></label>
-                <input asp-for="MaCt" class="form-control" />
-                <span asp-validation-for="MaCt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-area="Admin" asp-action="Create" asp-controller="BlogCategory" method="post" class="form-horizontal">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="@Model.Ten" class="control-label col-md-2">Tên chuyên mục</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Ten" class="form-control" required placeholder="Nhập tên chuyên mục" />
+        </div>
     </div>
-</div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Mota" class="control-label col-md-2">Mô tả</label>
+        <div class="col-md-10">
+            <textarea asp-for="@Model.Mota" class="form-control"></textarea>
+            <script type="text/javascript">
+                CKEDITOR.replace("Mota");
+            </script>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.MaCt" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.MaCt" class="form-control" />
+            <span asp-validation-for="@Model.MaCt" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-success">Thêm</button>
+        </div>
+    </div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-success">Trở về danh sách</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

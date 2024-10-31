@@ -1,74 +1,115 @@
-﻿@model organic_food_store.Models.TinTuc
+﻿@model TinTuc
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewBag.Title = "Admin - Sửa tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h2>Sửa tin tức</h2>
 
-<h4>TinTuc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Ma" />
-            <div class="form-group">
-                <label asp-for="MaCm" class="control-label"></label>
-                <select asp-for="MaCm" class="form-control" asp-items="ViewBag.MaCm"></select>
-                <span asp-validation-for="MaCm" class="text-danger"></span>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Ma)
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Mã CM</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaCm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaCm, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                <label asp-for="MotaNgan" class="control-label"></label>
-                <input asp-for="MotaNgan" class="form-control" />
-                <span asp-validation-for="MotaNgan" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Mô tả ngắn</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MotaNgan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotaNgan, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                <label asp-for="Mota" class="control-label"></label>
-                <input asp-for="Mota" class="form-control" />
-                <span asp-validation-for="Mota" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mô tả</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+                <script type="text/javascript">
+                    CKEDITOR.replace("Mota")
+                </script>
             </div>
-            <div class="form-group">
-                <label asp-for="NgayDang" class="control-label"></label>
-                <input asp-for="NgayDang" class="form-control" />
-                <span asp-validation-for="NgayDang" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Ngày đăng</b>
+            <div class="col-md-10">
+                <input type="date" required class="form-control" name="Ngaydang" value="@Model.NgayDang" />
             </div>
-            <div class="form-group">
-                <label asp-for="Anh" class="control-label"></label>
-                <input asp-for="Anh" class="form-control" />
-                <span asp-validation-for="Anh" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Ảnh</label>
+            <div class="col-md-10">
+                <div class="col-md-4">
+                    <input type="text" name="Anh" id="Anh" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-default" id="browse" value="browse" />
+                </div>
+                <div class="col-md-3">
+                    <img src="#" id="anhtin" width="50" height="50" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NguoiDang" class="control-label"></label>
-                <input asp-for="NguoiDang" class="form-control" />
-                <span asp-validation-for="NguoiDang" class="text-danger"></span>
+        </div>
+        <script type="text/javascript">
+            $("#browse").click(function () {
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (fileUrl) {
+                    ;
+                    $("#Anh").val(fileUrl);
+                    $("#anhtin").attr("src", fileUrl);
+                }
+                finder.popup();
+            });
+
+        </script>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Người đăng</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NguoiDang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                <label asp-for="TieuBieu" class="control-label"></label>
-                <input asp-for="TieuBieu" class="form-control" />
-                <span asp-validation-for="TieuBieu" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Tiêu biểu</b>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TieuBieu)
+                    @Html.ValidationMessageFor(model => model.TieuBieu, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LoaiTin" class="control-label"></label>
-                <input asp-for="LoaiTin" class="form-control" />
-                <span asp-validation-for="LoaiTin" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <b class="control-label col-md-2">Loại tin</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiTin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiTin, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                <label asp-for="TieuDe" class="control-label"></label>
-                <input asp-for="TieuDe" class="form-control" />
-                <span asp-validation-for="TieuDe" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+}
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-success">Trở về danh sách</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

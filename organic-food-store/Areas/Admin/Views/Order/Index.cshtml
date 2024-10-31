@@ -1,53 +1,53 @@
-﻿@model IEnumerable<organic_food_store.Models.DonHang>
+﻿@model IEnumerable<DonHang>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Admin - Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
+<h2>Danh sách đơn hàng</h2>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-controller="Order" class="btn btn-success">Thêm đơn hàng mới</a>
 </p>
 <table class="table">
-    <thead>
+    <tr>
+        <th>
+            Tên người nhận
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Phí giao
+        </th>
+
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Phương thức thanh toán
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayDat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayGiao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhiGiao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TenNguoiNhan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DienThoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrangThai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhuongThucTt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaKhNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NgayDat)
             </td>
@@ -57,9 +57,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhiGiao)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DiaChi)
             </td>
@@ -76,14 +74,10 @@
                 @Html.DisplayFor(modelItem => item.PhuongThucTt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaKhNavigation.Ma)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Ma">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Ma">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Ma">Delete</a>
+                <a asp-area="Admin" asp-action="Edit" asp-controller="Order" asp-route-id="@item.Ma" class="btn btn-success">Sửa</a>
+                <a asp-area="Admin" asp-action="Delete" asp-controller="Order" asp-route-id="@item.Ma" class="btn btn-success">Xóa</a>
             </td>
         </tr>
-}
-    </tbody>
+    }
+
 </table>

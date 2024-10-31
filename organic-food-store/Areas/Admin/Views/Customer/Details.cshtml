@@ -1,48 +1,59 @@
-﻿@model organic_food_store.Models.KhachHang
+﻿@model KhachHang
 
 @{
-    ViewData["Title"] = "Details";
+    ViewBag.Title = "Admin - Chi tiết khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h2>Details</h2>
 
 <div>
-    <h4>KhachHang</h4>
+    <h4>Khach Hang</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.Ten)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.Ten)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.DiaChi)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.DienThoai)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.DienThoai)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt>
             @Html.DisplayNameFor(model => model.Password)
         </dt>
-        <dd class = "col-sm-10">
+
+        <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
+
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Ma">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<p>
+    <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Customer" asp-route-id="@Model.Ma">Sửa</a>
+    <a class="btn btn-success" asp-area="Admin" asp-action="Index" asp-controller="Customer">Trở về danh sách</a>
+</p>

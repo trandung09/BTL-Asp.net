@@ -9,10 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\Controllers\TestController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
@@ -32,13 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Controllers\TestController.cs" />
     <None Include="wwwroot\content\bootstrap.css" />
     <None Include="wwwroot\content\bootstrap.min.css" />
-    <None Include="wwwroot\content\dangkyStyle.css" />
-    <None Include="wwwroot\content\LoginStyle.css" />
+    <None Include="wwwroot\content\dangkystyle.css" />
+    <None Include="wwwroot\content\loginstyle.css" />
     <None Include="wwwroot\content\pagedlist.css" />
-    <None Include="wwwroot\content\Site.css" />
+    <None Include="wwwroot\content\site.css" />
     <None Include="wwwroot\lib\css\bootstrap.min.css" />
     <None Include="wwwroot\lib\css\elegant-icons.css" />
     <None Include="wwwroot\lib\css\font-awesome.min.css" />

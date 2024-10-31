@@ -203,9 +203,9 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(int? page, string query)
+        public IActionResult Search(int? page, string keyWord)
         {
-            var products = _dbContext.Sps.Where(s => s.Ten.Contains(query)).ToList();
+            var products = _dbContext.Sps.Where(s => s.Ten.Contains(keyWord)).ToList();
 
             if (page == null)
             {

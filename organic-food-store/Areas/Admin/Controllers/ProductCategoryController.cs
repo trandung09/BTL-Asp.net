@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using organic_food_store.Models;
+using PagedList;
 
 namespace organic_food_store.Areas.Admin.Controllers
 {
@@ -20,9 +21,20 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         // GET: Admin/Category
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _dbContext.LoaiSps.ToListAsync());
+            if (HttpContext.Session.GetString("AdminName") != null)
+            {
+                if (page == null)
+                {
+                    page = 1;
+                }
+                int pageSize = 5;
+                int pageNumber = (page ?? 1);
+
+                return View(_dbContext.LoaiSps.OrderByDescending(s => s.Ma).ToPagedList(pageNumber, pageSize));
+            }
+            return RedirectToAction("LogIn", "Account", new {area = "Admin"});
         }
 
         // GET: Admin/Category/Details/5
@@ -33,14 +45,13 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loaiSp = await _dbContext.LoaiSps
-                .FirstOrDefaultAsync(m => m.Ma == id);
-            if (loaiSp == null)
+            var productCayegory = await _dbContext.LoaiSps.FirstOrDefaultAsync(m => m.Ma == id);
+            if (productCayegory == null)
             {
                 return NotFound();
             }
 
-            return View(loaiSp);
+            return View(productCayegory);
         }
 
         // GET: Admin/Category/Create
@@ -54,15 +65,15 @@ namespace organic_food_store.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Ma,Ten,Mota")] LoaiSp loaiSp)
+        public async Task<IActionResult> Create([Bind("Ma, Ten, Mota")] LoaiSp productCategory)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Add(loaiSp);
+                _dbContext.Add(productCategory);
                 await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(loaiSp);
+            return View(productCategory);
         }
 
         // GET: Admin/Category/Edit/5
@@ -73,12 +84,12 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loaiSp = await _dbContext.LoaiSps.FindAsync(id);
-            if (loaiSp == null)
+            var productCategory = await _dbContext.LoaiSps.FindAsync(id);
+            if (productCategory == null)
             {
                 return NotFound();
             }
-            return View(loaiSp);
+            return View(productCategory);
         }
 
         // POST: Admin/Category/Edit/5
@@ -86,7 +97,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Ma,Ten,Mota")] LoaiSp loaiSp)
+        public async Task<IActionResult> Edit(int id, [Bind("Ma, Ten, Mota")] LoaiSp loaiSp)
         {
             if (id != loaiSp.Ma)
             {
@@ -102,7 +113,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LoaiSpExists(loaiSp.Ma))
+                    if (!ProductCategoryExists(loaiSp.Ma))
                     {
                         return NotFound();
                     }
@@ -124,13 +135,13 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loaiSp = await _dbContext.LoaiSps.FirstOrDefaultAsync(m => m.Ma == id);
-            if (loaiSp == null)
+            var productCategory = await _dbContext.LoaiSps.FirstOrDefaultAsync(m => m.Ma == id);
+            if (productCategory == null)
             {
                 return NotFound();
             }
 
-            return View(loaiSp);
+            return View(productCategory);
         }
 
         // POST: Admin/Category/Delete/5
@@ -138,17 +149,43 @@ namespace organic_food_store.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var loaiSp = await _dbContext.LoaiSps.FindAsync(id);
-            if (loaiSp != null)
+            var productCategory = await _dbContext.LoaiSps.FindAsync(id);
+            if (productCategory != null)
             {
-                _dbContext.LoaiSps.Remove(loaiSp);
+                _dbContext.LoaiSps.Remove(productCategory);
             }
 
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LoaiSpExists(int id)
+        public ActionResult Search(int? page)
+        {
+
+            if (page == null)
+            {
+                page = 1;
+            }
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+
+            return View(_dbContext.LoaiSps.OrderByDescending(s => s.Ma).ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult Search(int? page, string keyWord)
+        {
+            var pcList = _dbContext.LoaiSps.Where(s => s.Ten.Contains(keyWord)).ToList();
+            if (page == null)
+            {
+                page = 1;
+            }
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+
+            return View(pcList.OrderByDescending(s => s.Ma).ToPagedList(pageNumber, pageSize));
+        }
+
+        private bool ProductCategoryExists(int id)
         {
             return _dbContext.LoaiSps.Any(e => e.Ma == id);
         }

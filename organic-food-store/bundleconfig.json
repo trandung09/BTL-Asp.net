@@ -1,0 +1,19 @@
+[
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/scripts/jquery-{version}.js",
+      "wwwroot/scripts/jquery.validate*.js",
+      "wwwroot/scripts/bootstrap.js",
+      "wwwroot/scripts/respond.js",
+      "wwwroot/scripts/modernizr-*"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/content/bootstrap.css",
+      "wwwroot/content/site.css"
+    ]
+  }
+]

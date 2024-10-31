@@ -24,7 +24,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 var blogCategories = _dbContext.ChuyenMucs.ToList();
                 return View(blogCategories);
             }
-            return RedirectToAction("LogIn", "Account");
+            return RedirectToAction("LogIn", "Account", new {area = "Admin"});
         }
 
         // GET: Admin/BlogCategory/Details/5
@@ -108,7 +108,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new {area = "Admin"});
             }
 
             ViewBag.Ma = new SelectList(_dbContext.TinTucs, "Ma", "MotaNgan", blogCategory.Ma);
@@ -144,7 +144,7 @@ namespace organic_food_store.Areas.Admin.Controllers
             }
 
             await _dbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new {area = "Admin"});
         }
 
         public IActionResult Search(int? page)

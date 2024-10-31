@@ -18,6 +18,7 @@ namespace organic_food_store.Areas.Admin.Controllers
 
         // GET: Admin/Blog
         [HttpGet]
+        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.GetString("AdminName") != null)
@@ -59,7 +60,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Ma, MaCm, MotaNgan, Mota, NgayDang, Anh, NguoiDang, TieuBieu, LoaiTin, TieuDe")] TinTuc blog)
+        public async Task<IActionResult> Create([Bind("Ma, MaCm, MotaNgan, Mota, NgayDang, Anh, NguoiDang, TieuBieu, LoaiTin")] TinTuc blog)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +95,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Ma, MaCm, MotaNgan, Mota, NgayDang, Anh, NguoiDang, TieuBieu, LoaiTin, TieuDe")] TinTuc blog)
+        public async Task<IActionResult> Edit([Bind("Ma, MaCm, MotaNgan, Mota, NgayDang, Anh, NguoiDang, TieuBieu, LoaiTin")] TinTuc blog)
         {
             if (ModelState.IsValid)
             {

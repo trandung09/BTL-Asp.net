@@ -2,15 +2,22 @@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Admin- Danh sách sản phẩm";
+    ViewBag.Title = "Admin - Tìm kiếm sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Danh sách sản phẩm</h2>
+<h2>Tìm kiếm thông tin về sản phẩm</h2>
 
-<p>
-    <a asp-area ="Admin" asp-action="Create" asp-controller="Product" class="btn btn-primary">Thêm sản phẩm mới</a>
-</p>
+
+<form class="form-inline" asp-area="Admin" asp-action="Search" asp-controller="Product" method="post">
+    <div class="form-group">
+        <label for="exampleInputName2">Nhập thông tin cần tìm</label>
+        <input type="text" class="form-control" name="keyWord" id="example" placeholder="nhập tên sản phẩm">
+        <button type="submit" class="btn btn-default">Tìm</button>
+    </div>
+
+</form>
+
 <table class="table">
     <tr>
         <th>
@@ -94,23 +101,30 @@
             </td>
 
             <td>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Product" asp-route-id="@item.Ma">Sửa</a>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">Chi tiết</a>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="Product" asp-route-id="@item.Ma">Xóa</a>
+                <a class="btn btn-success" asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Ma">Sửa</a> |
+                <a class="btn btn-success" asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-id="@item.Ma">Chi tiết</a> |
+                <a class="btn btn-success" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Ma">Xoá</a>
             </td>
         </tr>
     }
 </table>
 
-<div class="text-center" id="sp_area">
-    <pagination 
-        asp-page="Index" 
-        asp-controller="Product" 
-        asp-route-page="@(Model.PageNumber)" 
-        total-pages="@Model.PageCount" 
-        class="pagination" 
-        ajax="true" 
-        update-target-id="sp_area">
-    </pagination>
+<div class="text-center">
+    @for (var i = 1; i <= Model.PageCount; i++)
+    {
+        <a href="javascript:void(0);" class="page-link" onclick="loadPage(@i);">@i</a>
+    }
 </div>
 
+<script>
+    function loadPage(pageNumber) {
+        $.ajax({
+            url: '@Url.Action("Timkiem")',
+            type: 'POST',
+            data: { page: pageNumber, keyword: $('input[name="keyword"]').val() },
+            success: function (data) {
+                $('#sp_area').html(data); // Cập nhật nội dung của phần tử có id là "sp_area"
+            }
+        });
+    }
+</script>

@@ -1,28 +1,28 @@
-﻿@model IEnumerable<organic_food_store.Models.LoaiSp>
+﻿@model PagedList.IPagedList<LoaiSp>
+@using PagedList.Mvc;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Danh sách loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h2>Danh sách loại sản phẩm</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-controller="ProductCategory" class="btn btn-success">Thêm loại sản phẩm</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ten)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mota)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
+    <tr>
+        <th>
+            Tên
+        </th>
+        <th>
+            Mô tả
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Ten)
@@ -31,11 +31,11 @@
                 @Html.DisplayFor(modelItem => item.Mota)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Ma">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Ma">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Ma">Delete</a>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="ProductCategory" asp-route-id="@item.Ma">Sửa</a>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Details" asp-controller="ProductCategory" asp-route-id="@item.Ma">Chi tiết</a>
+                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="ProductCategory" asp-route-id="@item.Ma">Xóa</a>
             </td>
         </tr>
-}
-    </tbody>
+    }
+
 </table>
