@@ -122,11 +122,11 @@ namespace organic_food_store.Controllers
                 newOrder.DienThoai = phone;
                 newOrder.Email = email;
                 newOrder.DiaChi = address;
-                newOrder.PhuongThucTt = paymentMethod;
-
-                _dbContext.DonHangs.Add(newOrder);
-                _dbContext.SaveChanges();
+                newOrder.PhuongThucTt = paymentMethod; 
             }
+
+            _dbContext.DonHangs.Add(newOrder);
+            _dbContext.SaveChanges();
 
             var cart = GetCartItems();  // Giỏ hàng
 
@@ -192,12 +192,16 @@ namespace organic_food_store.Controllers
             EmailService emailService = new EmailService();
             emailService.SendEmail(emailModel);
 
-            return RedirectToAction(nameof(OrderSuccessful));
+            return RedirectToAction(nameof(OrderSuccessful), new {id = newOrder.Ma});
         }
 
         public ActionResult OrderSuccessful(int id) // Đăt hàng thành công
         {
-            var order = _dbContext.DonHangs.SingleOrDefault(o => o.Ma == id);
+            var order = _dbContext.DonHangs.Find(id);
+            if (order == null)
+            {
+                return RedirectToAction(nameof(Payment));
+            }
             return View(order);
         }
 
