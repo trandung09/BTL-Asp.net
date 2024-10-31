@@ -9,17 +9,17 @@ namespace organic_food_store.Controllers
             return View();
         }
 
-        public ActionResult StoreList()
+        public ActionResult StoreList() // Danh sách cửa hàng
         {
             return View();
         }
 
-        public ActionResult BuyingGuide()
+        public ActionResult BuyingGuide() // Hướng dẫn mua hàng
         {
             return View();
         }
 
-        public ActionResult ReturnPolicy()
+        public ActionResult ReturnPolicy() // Chính sách đổi trả
         {
             return View();
         }

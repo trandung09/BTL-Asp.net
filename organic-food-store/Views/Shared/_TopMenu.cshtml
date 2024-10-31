@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-2">
             <div class="header__logo">
-                <a asp-action="Index" asp-controller="Home"><img src="~/Lib/img/logotps.png" alt="Image_Good-Market"></a>
+                <a asp-action="Index" asp-controller="Home"><img src="~/lib/img/logotps.png" alt="Image_Good-Market"></a>
             </div>
         </div>
         <div class="col-lg-8">
@@ -62,7 +62,7 @@
                     @if (cart != null)
                     {
                         <li>
-                            <a href="#"><i class="fa fa-shopping-bag"></i> <span>@cart.Count</span></a>
+                            <a asp-action="ViewCart" asp-controller="Cart"><i class="fa fa-shopping-bag"></i> <span>@cart.Count</span></a>
                         </li>
                     }
                     else

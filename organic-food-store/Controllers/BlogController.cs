@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using organic_food_store.Models;
 
 namespace organic_food_store.Controllers
@@ -17,41 +18,46 @@ namespace organic_food_store.Controllers
             return View();
         }
 
-        public PartialViewResult _Blogs()
+        public PartialViewResult _Blogs() // Tin tức
         {
-            ViewBag.listBlog = _dbContext.TinTucs.Where(b => b.TieuBieu == true && b.LoaiTin == null).ToList();
+            ViewBag.blogs = _dbContext.TinTucs.Where(b => b.TieuBieu == true && b.LoaiTin == null).ToList();
 
             return PartialView();
         }
 
         public PartialViewResult _PregnantMothersBlogs() // Tin tức dành cho mẹ bầu
         {
-            ViewBag.listMotherBlog = _dbContext.TinTucs.Where(b => b.LoaiTin == "chomebau").ToList();
+            var pregnantBlogs = _dbContext.TinTucs.Where(b => b.LoaiTin.Equals("chomebau")).ToList();
+            ViewBag.blogs = _dbContext.TinTucs.ToList();
 
-            return PartialView();
+            return PartialView(pregnantBlogs);
         }
 
-        public PartialViewResult _DailyBlogs()
+        public PartialViewResult _DailyBlogs() // Tin tức hằng ngày
         {
-            ViewBag.listDailyBlog = _dbContext.TinTucs.Where(b => b.LoaiTin == "TinTucHangNgay").ToList();
-
-            return PartialView();
+            var dailyBlogs = _dbContext.TinTucs.Where(b => b.LoaiTin.Equals("TinTucHangNgay")).ToList();
+            ViewBag.blogs = _dbContext.TinTucs.ToList();
+            
+            return PartialView(dailyBlogs);
         }
 
-        public ActionResult Search(string query)
-        {
-            var listResult = _dbContext.TinTucs.Where(b => b.MotaNgan.Contains(query)).ToList();
-            ViewBag.resultCount = listResult.Count();
-
-            return View(listResult);
-        }
-
-        public ActionResult BlogDetails(int id)
+        public ActionResult BlogDetails(int id) // Chi tiết tin tức
         {
             var blog = _dbContext.TinTucs.Find(id);
             ViewBag.otherBlogs = _dbContext.TinTucs.Where(b => b.LoaiTin == blog.LoaiTin).Take(4).ToList();
 
             return View(blog);
         }
+
+        public ActionResult Search(string keyWord) // Tìm kiếm tin tức
+        {
+            var resultBlogs = _dbContext.TinTucs.Where(b => b.MotaNgan.Contains(keyWord)).ToList();
+
+            ViewBag.blogs = _dbContext.TinTucs.ToList();
+            ViewBag.resultCount = resultBlogs.Count();
+
+            return View(resultBlogs);
+        }
+
     }
 }

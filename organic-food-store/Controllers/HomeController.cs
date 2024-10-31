@@ -26,15 +26,8 @@ namespace organic_food_store.Controllers
         }
 
         public PartialViewResult _Slide()
-        {
-            var newProducts = _dbContext.Sps.OrderBy(p => p.NgayDang).Take(10).ToList();
-
-            return PartialView(newProducts);
-        }
-
-        public ActionResult About()
-        {
-            return View();
+        { 
+            return PartialView();
         }
     }
 }

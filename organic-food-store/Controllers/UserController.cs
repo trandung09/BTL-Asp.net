@@ -18,7 +18,6 @@ namespace organic_food_store.Controllers
             return View();
         }
 
-        [HttpGet]
         public ActionResult Register() // Đăng kí
         {
             return View();
@@ -41,12 +40,13 @@ namespace organic_food_store.Controllers
             else
             {
                 KhachHang user = new KhachHang();
-
-                user.Ten = name;
-                user.DiaChi = address;
-                user.DienThoai = phone;
-                user.Email = email;
-                user.Password = password;
+                {
+                    user.Ten = name;
+                    user.DiaChi = address;
+                    user.DienThoai = phone;
+                    user.Email = email;
+                    user.Password = password;
+                }
 
                 _dbContext.KhachHangs.Add(user);
                 _dbContext.SaveChanges();
@@ -57,8 +57,7 @@ namespace organic_food_store.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult LogIn()
+        public ActionResult LogIn() // Đăng nhập
         {
             return View();
         }
@@ -68,10 +67,10 @@ namespace organic_food_store.Controllers
         {
             var users = _dbContext.KhachHangs.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).ToList();
 
-            if (users.Count > 0)
+            if (users.Count() > 0)
             {
                 // HttpContext.Session["UserName"] = users.FirstOrDefault().Ten;
-                string userName = users.FirstOrDefault().Ten;
+                string userName = users.First().Ten;
                 Console.WriteLine(userName);
                 HttpContext.Session.SetString("UserName", userName);
 
@@ -96,17 +95,18 @@ namespace organic_food_store.Controllers
 
             if (user == null)
             {
-
                 ViewBag.message = $"{recipientEmail} chưa được đăng kí tài khoản.";
                 return View();
             }
 
             EmailModel mail = new EmailModel();
-            mail.SenderEmail = "trandung09082004@gmail.com";
-            mail.SenderEmailPassword = ""; // Cần tạo password trên Google account security
-            mail.RecipientEmail = recipientEmail;
-            mail.Content = $"Đây là mật khẩu của bạn, hãy giữ kín. Mật khẩu là: <b>{user.Password}</b>.";
-            mail.Topic = "Cấp lại mật khẩu.";
+            {
+                mail.SenderEmail = "trandung09082004@gmail.com";
+                mail.SenderEmailPassword = "trandung"; // Cần tạo password trên Google account security
+                mail.RecipientEmail = recipientEmail;
+                mail.Content = $"Đây là mật khẩu của bạn, hãy giữ kín. Mật khẩu là: <b>{user.Password}</b>.";
+                mail.Topic = "Cấp lại mật khẩu.";
+            }
 
             EmailService emailService = new EmailService();
             emailService.SendEmail(mail);

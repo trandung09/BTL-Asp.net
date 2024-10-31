@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Controllers\TestController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
@@ -22,15 +26,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Controllers\TestController.cs" />
     <None Include="wwwroot\content\bootstrap.css" />
     <None Include="wwwroot\content\bootstrap.min.css" />
     <None Include="wwwroot\content\dangkyStyle.css" />
     <None Include="wwwroot\content\LoginStyle.css" />
-    <None Include="wwwroot\content\PagedList.css" />
+    <None Include="wwwroot\content\pagedlist.css" />
     <None Include="wwwroot\content\Site.css" />
     <None Include="wwwroot\lib\css\bootstrap.min.css" />
     <None Include="wwwroot\lib\css\elegant-icons.css" />
@@ -180,6 +187,10 @@
     <None Include="wwwroot\lib\sass\_sidebar.scss" />
     <None Include="wwwroot\lib\sass\_variable.scss" />
     <None Include="wwwroot\lib\thanhtoan1\free.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

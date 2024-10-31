@@ -3,6 +3,7 @@
 @{
     List<Sp> listSameProduct = (List<Sp>) ViewBag.listSameProduct;
 }
+
 @{
     ViewBag.Title = "Sản phẩm theo loại";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -65,7 +66,6 @@
                 <div class="featured__item">
                     <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">
                         <div class="categories__item set-bg" data-setbg="@item.AnhNho">
-                            @*<h5><a href="@Url.Action("Chitiet","Sanpham", new { ma = item.Ma })">@item.Ten</a></h5>*@
                         </div>
                     </a>
                     <div class="featured__item__text">

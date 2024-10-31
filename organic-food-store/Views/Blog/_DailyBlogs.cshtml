@@ -4,11 +4,11 @@
     ViewBag.Title = "Tin tức hàng ngày";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @{
-    OrganicFoodStoreContext dbContext = new OrganicFoodStoreContext();
-    var listBlog = dbContext.TinTucs.ToList();
-    var listDailyBlog = (List<TinTuc>)ViewBag.listDailyBlog;
+    var blogs = (List<TinTuc>) ViewBag.blogs;
 }
+
 <div class="container">
     <h1 class="tintuc-topmenu">Tin tức</h1>
     <nav aria-label="breadcrumb">
@@ -41,7 +41,7 @@
                             <div class="blog__sidebar__recent__item__pic">
                                 <img src="@Model" alt="">
                             </div>
-                            @foreach (var itemtt in listBlog)
+                            @foreach (var itemtt in blogs)
                             {
                                 <div class="blog__sidebar__recent__item__text">
                                     <img width="100px" height="100px" src="@itemtt.Anh" />
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="t2">
-            @foreach (var item in listDailyBlog)
+            @foreach (var item in Model)
             {
                 <div class="blog__details__text">
                     <img src="@item.Anh" alt="">

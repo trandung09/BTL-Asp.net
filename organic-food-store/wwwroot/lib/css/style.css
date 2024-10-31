@@ -3700,3 +3700,12 @@ margin-bottom:10px;
     border:1px solid:#1c1c1c;
     color:brown;
 }
+
+a:hover {
+	color: black;
+}
+
+
+a:active {
+	color: black;
+}

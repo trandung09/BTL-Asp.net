@@ -1,0 +1,83 @@
+﻿@model IEnumerable<organic_food_store.Models.TinTuc>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MotaNgan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NguoiDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TieuBieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiTin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TieuDe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaCmNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotaNgan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuBieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiTin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCmNavigation.Ma)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Ma">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Ma">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Ma">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

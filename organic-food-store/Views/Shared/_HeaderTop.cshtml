@@ -4,10 +4,10 @@
             <div class="header__top__left">
                 <ul>
                     <li>
-                        <a asp-action="Index" asp-controller="Home"><i class="fa fa-home"></i></a>Trang chủ
+                        <a asp-action="Index" asp-controller="Home" style="color: black;"><i class="fa fa-home"></i> Trang chủ</a>
                      </li>
                     <li>
-                        <i class="fa fa-envelope"></i>Email:nhom3@gmail.com
+                        <i class="fa fa-envelope"></i>Email: nhom3@gmail.com
                     </li>
                 </ul>
             </div>
@@ -20,7 +20,7 @@
                     <a href="#"><i class="fa fa-youtube"></i></a>
                 </div>
                 <div class="header__top__right__language">
-                    <img src="~/Lib/img/vietnam.png" alt="">
+                    <img src="~/lib/img/vietnam.png" alt="">
                     <div>Tiếng Việt</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
@@ -37,11 +37,10 @@
                 else
                 {
                     <div class="header__top__right__language">
-                        <div><i class="fa fa-user"></i>@Context.Session.GetString("UserName")</div>
+                        <div><i class="fa fa-user"></i> @Context.Session.GetString("UserName")</div>
                         <span class="arrow_carrot-down"></span>
                         <ul>
-
-                            <li><a asp-action="LogOut" asp-contrller="Home">Thoát</a></li>
+                            <li><a asp-action="LogOut" asp-controller="Home">Thoát</a></li>
                         </ul>
                     </div>
                 }

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    @* Render CSS *@
+    <link rel="stylesheet" href="~/content/css" />
+    <link rel="stylesheet" href="~/content/pagedlist.css" />
+
+    <script src="~/admin/content/ckeditor/ckeditor.js"></script>
+    <script src="~/admin/content/ckfinder/ckfinder.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index" asp-area="">Application name</a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Admin: <b>@Context.Session.GetString("AdminName")</b> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a asp-controller="Account" asp-action="Register">Đăng ký tài khoản</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Account" asp-action="ChangePassword">Thay đổi mật khẩu</a>
+                            </li>
+                            <li><a asp-controller="Account" asp-action="ForgotPassword">Lấy lại mật khẩu</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-controller="Account" asp-action="Login">Thoát</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Trang chủ <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Quản lý sản phẩm <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a asp-controller="Product" asp-action="Index">Danh sách sản phẩm</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Product" asp-action="Create">Thêm sản phẩm mới</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Product" asp-action="Search">Tìm kiếm sản phẩm</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a asp-controller="ProductCategory" asp-action="Index">Danh sách loại sản phẩm</a>
+                             </li>
+                            <li>
+                                <a asp-controller="ProductCategory" asp-action="Create">Thêm loại sản phẩm mới</a>
+                            </li>
+                            <li>
+                                <a asp-controller="ProductCategory" asp-action="Search">Tìm kiếm loại sản phẩm</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Quản lý tin tức <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a asp-controller="Blog" asp-action="Index">Danh sách tin</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Blog" asp-action="Create">Thêm tin mới</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Blog" asp-action="Search">Tìm kiếm tin</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a asp-controller="BlogCategory" asp-action="Index">Danh sách chuyên mục</a>
+                            </li>
+                            <li>
+                                <a asp-controller="BlogCategory" asp-action="Create">Thêm chuyên mục</a>
+                            </li>
+                            <li>
+                                <a asp-controller="BlogCategory" asp-action="Search">Tìm kiếm chuyên mục</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Quản lý đơn hàng <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Danh sách đơn hàng mới</a></li>
+                            <li><a href="#">Danh sách đơn hàng đã duyệt</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a asp-controller="Customer" asp-action="Index">Danh sách khách hàng</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Core Application</p>
+        </footer>
+    </div>
+
+    @* Scripts *@
+    <script src="~/bundles/jquery"></script>
+    <script src="~/bundles/bootstrap"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
