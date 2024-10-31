@@ -74,7 +74,7 @@
                                     @cartItem.Product.Ten
                                 </td>
                                 <td style="text-align:center; vertical-align:middle">
-                                    @itemPrice
+                                    @itemPrice đ
                                 </td>
                             </tr>
                             <tr>
@@ -94,20 +94,23 @@
                         </tr>
                         <tr>
                             <td>VAT</td>
-                            <td>@VAT</td>
+                            <td>@VAT đ</td>
                         </tr>
                         <tr>
                             <td height="20px">  </td>
                         </tr>
                         <tr>
                             <td>Tổng đơn hàng</td>
-                            <td>@payable</td>
+                            <td>@payable đ</td>
                         </tr>
                         <tr>
                             <td height="20px">  </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="radio" name="pttt" checked="checked" onclick="readonly1()" value="ChuyenKhoan" />Thanh toán qua ngân hàng</td>
+                            <td colspan="2">
+                                <input type="radio" name="pttt" checked="checked" onclick="readonly1()" value="ChuyenKhoan" />
+                                &nbsp;&nbsp;Thanh toán qua ngân hàng
+                        </td>
                         </tr>
                         <tr>
                             <td id="content2">
@@ -117,15 +120,15 @@
                                     </div>
                                     <div class="ten_vcb">
                                         <p class="ten">Vietcombank</p>
-                                        <p>Chủ Tài Khoản : nhom3-asp.net mvc</p>
-                                        <p>Chi nhánh Ha Noi</p>
+                                        <p>Chủ Tài Khoản: nhom3-asp.net mvc</p>
+                                        <p>Chi nhánh: Hà Nội</p>
                                         <p>Số TK : 00888888888</p>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="radio" name="pttt" onclick="readonly2()" value="GiaoHangLayTien" />Ship COD</td>
+                            <td colspan="2"><input type="radio" name="pttt" onclick="readonly2()" value="GiaoHangLayTien" />&nbsp;&nbsp;Ship COD</td>
                         </tr>
                         <tr>
                             <td height="20px">  </td>
@@ -157,7 +160,7 @@
 
 <script language="javascript">
     function readonly1() {
-        document.getElementById("content2").innerHTML = "<div class=vcb> <div class=img_vcb> <img src=https://www.wheystore.vn/upload/bank/bank_1587134276_image_1587134276.jpg /> </div> <div class=ten_vcb> <p class=ten>Vietcombank</p> <p>Chủ Tài Khoản : Phùng Đình Minh</p> <p>Chi nhánh Nam Định</p> <p>Số TK : 009999999999</p>  </div>  </div>";
+        document.getElementById("content2").innerHTML = "<div class=vcb> <div class=img_vcb> <img src=https://www.wheystore.vn/upload/bank/bank_1587134276_image_1587134276.jpg /> </div> <div class=ten_vcb> <p class=ten>Vietcombank</p> <p>Chủ Tài Khoản: nhom3-asp.net mvc</p> <p>Chi nhánh: Hà Nội</p> <p>Số TK : 00888888888</p>  </div>  </div>";
         document.getElementById("content1").innerHTML = "";
         }
         function readonly2() {
