@@ -5,59 +5,35 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xoá thông tin khách hàng</h2>
+<h2>Xóa thông tin khách hàng</h2>
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Họ và tên
-        </dt>
+        <dt>Họ và tên</dt>
+        <dd>@Html.DisplayFor(model => model.Ten)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
+        <dt>Địa chỉ</dt>
+        <dd>@Html.DisplayFor(model => model.DiaChi)</dd>
 
-        <dt>
-            Địa chỉ
-        </dt>
+        <dt>Điện thoại</dt>
+        <dd>@Html.DisplayFor(model => model.DienThoai)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
+        <dt>Email</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
 
-        <dt>
-            Điện thoại
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoai)
-        </dd>
-
-        <dt>
-            Email
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            Mật khẩu
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
+        <dt>Mật khẩu</dt>
+        <dd>@Html.DisplayFor(model => model.Password)</dd>
     </dl>
+
+    <p class="text-danger"><strong>Bạn có chắc chắn muốn xóa khách hàng này không?</strong></p>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Xoá" class="btn btn-success" />
-            <a class="btn btn-success" asp-area="Admin" asp-action="Index" asp-controller="Customer">Trở về danh sách</a>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a class="btn btn-secondary" asp-area="Admin" asp-action="Index" asp-controller="Customer">Trở về danh sách</a>
         </div>
     }
 </div>

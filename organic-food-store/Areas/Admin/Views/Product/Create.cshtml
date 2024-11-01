@@ -7,8 +7,7 @@
 
 <h2>Thêm sảm phẩm mới</h2>
 
-@using (Html.BeginForm())
-{
+<form asp-action="Create" asp-controller="Product" asp-area="Admin" method="post">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -225,7 +224,7 @@
             </div>
         </div>
     </div>
-}
+</form>
 
 <div>
     <a asp-area="Admin" asp-action="Index" asp-controller="Product" class="btn btn-success">Trở về Danh sách</a>

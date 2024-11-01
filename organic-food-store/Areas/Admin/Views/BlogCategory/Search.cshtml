@@ -8,16 +8,16 @@
 
 <h2>Tìm kiếm chuyên mục</h2>
 
-<form asp-action="Search" asp-controller="BlogCategory" method="post" class="form-inline">
+<form asp-action="Search" asp-controller="BlogCategory" method="post" class="form-inline mb-4">
     <div class="form-group">
-        <label for="exampleInputName2">Nhập thông tin cần tìm</label>
-        <input type="text" class="form-control" name="keyWord" id="example" placeholder="Nhập tên chuyên mục cần tìm">
-        <button type="submit" class="btn btn-default">Tìm</button>
+        <label for="exampleInputName2" class="mr-2">Nhập thông tin cần tìm:</label>
+        <input type="text" class="form-control" name="keyWord" id="example" placeholder="Nhập tên chuyên mục cần tìm" />
+        <button type="submit" class="btn btn-primary ml-2">Tìm</button>
     </div>
 </form>
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>Tên</th>
             <th>Mô tả</th>
@@ -25,16 +25,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Ten</td>
+                    <td>@Html.Raw(item.Mota)</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" asp-area="Admin" asp-controller="BlogCategory" asp-action="Edit" asp-route-id="@item.Ma">Sửa</a>
+                        <a class="btn btn-info btn-sm" asp-area="Admin" asp-controller="BlogCategory" asp-action="Details" asp-route-id="@item.Ma">Chi tiết</a>
+                        <a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="BlogCategory" asp-action="Delete" asp-route-id="@item.Ma">Xoá</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@item.Ten</td>
-                <td>@item.Mota</td>
-                <td>
-                    <a class="btn btn-success" asp-area="Admin" asp-controller="BlogCategory" asp-action="Edit" asp-route-id="@item.Ma">Sửa</a> |
-                    <a class="btn btn-success" asp-area="Admin" asp-controller="BlogCategory" asp-action="Details" asp-route-id="@item.Ma">Chi tiết</a> |
-                    <a class="btn btn-success" asp-area="Admin" asp-controller="BlogCategory" asp-action="Delete" asp-route-id="@item.Ma">Xoá</a>
-                </td>
+                <td colspan="3" class="text-center">Không tìm thấy chuyên mục nào.</td>
             </tr>
         }
     </tbody>

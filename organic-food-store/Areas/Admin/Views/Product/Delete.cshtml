@@ -4,13 +4,13 @@
     ViewBag.Title = "Admin - Xóa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 <h3>Xoá sản phẩm</h3>
 <div>
     <dl class="dl-horizontal">
         <dt>
             Tên sản phẩm
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Ten)
         </dd>
@@ -18,7 +18,6 @@
         <dt>
             Mô tả sản phẩm
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.MoTa)
         </dd>
@@ -26,39 +25,34 @@
         <dt>
             Ảnh nhỏ
         </dt>
-
         <dd>
-            <img src="@Html.DisplayFor(model => model.AnhNho)" width="100" height="100" />
+            <img src="@Html.DisplayFor(model => model.AnhNho)" alt="Ảnh nhỏ" width="100" height="100" />
         </dd>
 
         <dt>
             Ảnh 1
         </dt>
-
         <dd>
-            <img src="@Html.DisplayFor(model => model.Anh1)" width="100" height="100" />
+            <img src="@Html.DisplayFor(model => model.Anh1)" alt="Ảnh 1" width="100" height="100" />
         </dd>
 
         <dt>
             Ảnh 2
         </dt>
-
         <dd>
-            <img src="@Html.DisplayFor(model => model.Anh2)" width="100" height="100" />
+            <img src="@Html.DisplayFor(model => model.Anh2)" alt="Ảnh 2" width="100" height="100" />
         </dd>
 
         <dt>
             Ảnh 3
         </dt>
-
         <dd>
-            <img src="@Html.DisplayFor(model => model.Anh3)" width="100" height="100" />
+            <img src="@Html.DisplayFor(model => model.Anh3)" alt="Ảnh 3" width="100" height="100" />
         </dd>
 
         <dt>
             Thông số kỹ thuật
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Tskt)
         </dd>
@@ -66,7 +60,6 @@
         <dt>
             Tiêu biểu
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TieuBieu)
         </dd>
@@ -74,23 +67,13 @@
         <dt>
             Trạng thái
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TrangThai)
         </dd>
 
         <dt>
-            Xoá
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Xoa)
-        </dd>
-
-        <dt>
             Hãng
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Hang)
         </dd>
@@ -98,7 +81,6 @@
         <dt>
             Giá
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Gia)
         </dd>
@@ -106,7 +88,6 @@
         <dt>
             Khuyến mãi
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.KhuyenMai)
         </dd>
@@ -114,7 +95,6 @@
         <dt>
             Ngày đăng
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NgayDang)
         </dd>
@@ -122,20 +102,20 @@
         <dt>
             Đơn vị tính
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Dvt)
         </dd>
-
     </dl>
+
+    <h4>Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Xoá" class="btn btn-success" />
-            <a asp-area="Admin" asp-action="Index" asp-controller="Product" class="btn btn-success">Trở về danh sách</a>
+        <div class="form-actions">
+            <input type="submit" value="Xoá" class="btn btn-danger" />
+            <a asp-area="Admin" asp-action="Index" asp-controller="Product" class="btn btn-secondary">Trở về danh sách</a>
         </div>
     }
 </div>

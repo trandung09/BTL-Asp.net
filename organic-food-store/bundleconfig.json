@@ -1,16 +1,31 @@
 [
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/bundles/jquery.js",
     "inputFiles": [
-      "wwwroot/scripts/jquery-{version}.js",
-      "wwwroot/scripts/jquery.validate*.js",
-      "wwwroot/scripts/bootstrap.js",
-      "wwwroot/scripts/respond.js",
+      "wwwroot/scripts/jquery-{version}.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/jqueryval.js",
+    "inputFiles": [
+      "wwwroot/scripts/jquery.validate*"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/modernizr.js",
+    "inputFiles": [
       "wwwroot/scripts/modernizr-*"
     ]
   },
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/bundles/bootstrap.js",
+    "inputFiles": [
+      "wwwroot/scripts/bootstrap.js",
+      "wwwroot/scripts/respond.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/content/css/site2.css",
     "inputFiles": [
       "wwwroot/content/bootstrap.css",
       "wwwroot/content/site.css"

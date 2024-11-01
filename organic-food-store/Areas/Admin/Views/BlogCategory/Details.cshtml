@@ -5,35 +5,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="mt-4">Chi tiết chuyên mục</h2>
 
-<div>
-    <h4>Chuyen Muc</h4>
+<div class="card p-4">
+    <h4>Thông tin chuyên mục</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Tên
-        </dt>
-        <dd>
-            <span asp-for="@Model.Ten"></span>
+    <dl class="row">
+        <dt class="col-sm-3">Tên</dt>
+        <dd class="col-sm-9">
+            <span>@Model.Ten</span>
         </dd>
 
-        <dt>
-            Mô tả
-        </dt>
-        <dd>
-            <span asp-for="@Model.Mota"></span>
+        <dt class="col-sm-3">Mô tả</dt>
+        <dd class="col-sm-9">
+            <span>@Model.Mota</span>
         </dd>
 
-        <dt>
-            Mã CT
-        </dt>
-        <dd>
-            <span asp-for="@Model.MaCt"></span>
+        <dt class="col-sm-3">Mã CT</dt>
+        <dd class="col-sm-9">
+            <span>@Model.MaCt</span>
         </dd>
     </dl>
 </div>
-<p>
-    <a asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@Model.Ma" class="btn btn-primary">Sửa</a> |
+
+<div class="mt-3">
+    <a asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@Model.Ma" class="btn btn-primary">Sửa</a>
     <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-success">Trở về danh sách</a>
-</p>
+</div>

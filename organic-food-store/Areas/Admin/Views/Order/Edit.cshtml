@@ -27,7 +27,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ngày đặt</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ngày giao</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Phí giao</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhiGiao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PhiGiao, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01" } })
                 @Html.ValidationMessageFor(model => model.PhiGiao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Điện thoại</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
                 @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Email</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,10 +75,8 @@
         <div class="form-group">
             <label class="control-label col-md-2">Trạng thái</label>
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.TrangThai)
-                    @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -99,5 +97,5 @@
 }
 
 <div>
-    <a asp-area="Admin" asp-action="Index" asp-asp-controller="Order" class="btn btn-success">Trở về danh sách</a>
+    <a asp-area="Admin" asp-action="Index" asp-controller="Order" class="btn btn-secondary">Trở về danh sách</a>
 </div>

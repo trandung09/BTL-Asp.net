@@ -5,87 +5,53 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="mt-4 text-center">Chi tiết tin tức</h2>
 
-<div>
-    <h4>Tin Tuc</h4>
+<div class="container mt-3">
+    <h4>Tin tức</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaCm)
-        </dt>
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MaCm)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MaCm)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaCm)
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MotaNgan)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MotaNgan)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Mota)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Mota)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NgayDang)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NgayDang)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Anh)</dt>
+        <dd class="col-sm-9">
+            <img src="@Html.DisplayFor(model => model.Anh)" height="100" width="100" class="img-thumbnail" onerror="this.onerror=null; this.src='default-image.png';" />
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MotaNgan)
-        </dt>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NguoiDang)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NguoiDang)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MotaNgan)
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TieuBieu)</dt>
+        <dd class="col-sm-9">
+            @if (Model.TieuBieu == true)
+            {
+                <span class="badge bg-success">Tiêu biểu</span>
+            }
+            else
+            {
+                <span class="badge bg-secondary">Không tiêu biểu</span>
+            }
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Mota)
-        </dt>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LoaiTin)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.LoaiTin)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Mota)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayDang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Anh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Anh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TieuBieu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TieuBieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiTin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaCmNavigation.Ten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaCmNavigation.Ten)
-        </dd>
-
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MaCmNavigation.Ten)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MaCmNavigation.Ten)</dd>
     </dl>
 </div>
-<p>
+
+<p class="mt-4">
     <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Blog" asp-route-id="@Model.Ma">Sửa</a>
-    <a class="btn btn-success" asp-area="Admin" asp-action="Index" , asp-controller="Blog">Quay lại danh sách</a>
+    <a class="btn btn-secondary" asp-area="Admin" asp-action="Index" asp-controller="Blog">Quay lại danh sách</a>
 </p>

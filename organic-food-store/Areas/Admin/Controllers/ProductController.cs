@@ -23,7 +23,7 @@ namespace organic_food_store.Areas.Admin.Controllers
 
         // GET: Admin/Product
         [HttpGet]
-        public async Task<IActionResult> Index(int? page = 1)
+        public ActionResult Index(int? page = 1)
         {
             if (HttpContext.Session.GetString("AdminName") != null)
             {
@@ -34,10 +34,10 @@ namespace organic_food_store.Areas.Admin.Controllers
 
                 // ToPageList không là một chuẩn trong LNIQ => nó đến từ thư viện PagedList.Mvc
                 // Thực hiên phân trang (Paging)
-                return View(_dbContext.Sps.OrderByDescending(p => p.Ma).ToPagedList(pageSize, pageNumber));
+                return View(_dbContext.Sps.ToList());
             }
 
-            return RedirectToAction("LogIn", "Admin");
+            return RedirectToAction("LogIn", "Admin", new {area = "Admin"});
         }
 
         // Phương thức này có thể được gọi từ JavaScript(AJAX)
@@ -73,7 +73,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         public IActionResult Create()
         {
             // Sử dụng SlectList tạo dropdown menu
-            ViewData["MaLoai"] = new SelectList(_dbContext.LoaiSps, "Ma", "Ten");
+            ViewBag.MaLoai = new SelectList(_dbContext.LoaiSps, "Ma", "Ten");
             return View();
         }
 
@@ -91,7 +91,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["MaLoai"] = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
+            ViewBag.MaLoai = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
             return View(product);
         }
 
@@ -110,7 +110,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            ViewData["MaLoai"] = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
+            ViewBag.MaLoai = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
             return View(product);
         }
 
@@ -151,7 +151,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["MaLoai"] = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
+            ViewBag.MaLoai = new SelectList(_dbContext.LoaiSps, "Ma", "Ten", product.MaLoai);
             return View(product);
         }
 
@@ -194,8 +194,12 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(int? page = 1)
+        public IActionResult Search(int? page)
         {
+            if (page == null)
+            {
+                page = 1;
+            }
             int pageSize = 2;
             int pageNumber = (page ?? 1);
 

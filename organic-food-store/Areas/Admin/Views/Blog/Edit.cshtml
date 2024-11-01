@@ -5,36 +5,35 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Sửa tin tức</h2>
+<h2 class="mt-4">Sửa tin tức</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-
+    <div class="container mt-3">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Ma)
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Mã CM</b>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Mã CM</label>
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.MaCm, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MaCm, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Mô tả ngắn</b>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Mô tả ngắn</label>
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.MotaNgan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MotaNgan, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Mô tả</label>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Mô tả</label>
+            <div class="col-sm-10">
                 @Html.TextAreaFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
                 <script type="text/javascript">
                     CKEDITOR.replace("Mota")
@@ -42,74 +41,69 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Ngày đăng</b>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ngày đăng</label>
+            <div class="col-sm-10">
                 <input type="date" required class="form-control" name="Ngaydang" value="@Model.NgayDang" />
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Ảnh</label>
-            <div class="col-md-10">
-                <div class="col-md-4">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ảnh</label>
+            <div class="col-sm-10">
+                <div class="input-group">
                     <input type="text" name="Anh" id="Anh" class="form-control" />
+                    <button type="button" class="btn btn-outline-secondary" id="browse">Browse</button>
                 </div>
-                <div class="col-md-2">
-                    <input type="button" class="btn btn-default" id="browse" value="browse" />
-                </div>
-                <div class="col-md-3">
-                    <img src="#" id="anhtin" width="50" height="50" />
-                </div>
+                <img src="#" id="anhtin" class="img-thumbnail mt-2" width="100" height="100" style="display:none;" />
             </div>
         </div>
+
         <script type="text/javascript">
             $("#browse").click(function () {
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (fileUrl) {
-                    ;
                     $("#Anh").val(fileUrl);
-                    $("#anhtin").attr("src", fileUrl);
+                    $("#anhtin").attr("src", fileUrl).show();
                 }
                 finder.popup();
             });
-
         </script>
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Người đăng</b>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Người đăng</label>
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.NguoiDang, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Tiêu biểu</b>
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.TieuBieu)
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Tiêu biểu</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.TieuBieu ?? false, new { @class = "form-check-input" })
                     @Html.ValidationMessageFor(model => model.TieuBieu, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <b class="control-label col-md-2">Loại tin</b>
-            <div class="col-md-10">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Loại tin</label>
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.LoaiTin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LoaiTin, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <div class="mb-3 row">
+            <div class="col-sm-10 offset-sm-2">
                 <input type="submit" value="Lưu" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-success">Trở về danh sách</a>
+<div class="mt-4">
+    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-secondary">Trở về danh sách</a>
 </div>

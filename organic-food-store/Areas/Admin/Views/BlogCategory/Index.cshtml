@@ -4,45 +4,34 @@
     ViewBag.Title = "Admin - Chuyên mục tin tức";
 }
 
-<h1>Index</h1>
+<h1 class="mt-4">Danh sách chuyên mục</h1>
 
 <p>
     <a class="btn btn-primary" asp-area="Admin" asp-action="Create" asp-controller="BlogCategory">Thêm chuyên mục mới</a>
 </p>
 
-<table class="table">
-    <tr>
-        <th>
-            Tên chuyên mục
-        </th>
-        <th>
-            Mô tả
-        </th>
-        <th>
-            Mã CT
-        </th>
-        <th>
-            Chức năng
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered table-striped mt-3">
+    <thead class="thead-dark">
         <tr>
-            <td>
-                @item.Ten
-            </td>
-            <td>
-                @Html.Raw(item.Mota)
-            </td>
-            <td>
-                @item.MaCt
-            </td>
-            <td>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Sửa</a> |
-                <a class="btn btn-success" asp-area="Admin" asp-action="Details" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Chi tiết</a> |
-                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="BlogCategory" asp-route-id="@item.Ma" class="btn btn-link">Xóa</a>
-            </td>
+            <th>Tên chuyên mục</th>
+            <th>Mô tả</th>
+            <th>Mã CT</th>
+            <th>Chức năng</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ten</td>
+                <td>@Html.Raw(item.Mota)</td>
+                <td>@item.MaCt</td>
+                <td>
+                    <a class="btn btn-success btn-sm" asp-area="Admin" asp-action="Edit" asp-controller="BlogCategory" asp-route-id="@item.Ma">Sửa</a>
+                    <a class="btn btn-info btn-sm" asp-area="Admin" asp-action="Details" asp-controller="BlogCategory" asp-route-id="@item.Ma">Chi tiết</a>
+                    <a class="btn btn-danger btn-sm" asp-area="Admin" asp-action="Delete" asp-controller="BlogCategory" asp-route-id="@item.Ma">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

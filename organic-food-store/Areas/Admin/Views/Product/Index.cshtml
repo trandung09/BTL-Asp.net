@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Sp>
+﻿@model IEnumerable<Sp>
 @using PagedList.Mvc;
 
 @{
@@ -11,106 +11,70 @@
 <p>
     <a asp-area ="Admin" asp-action="Create" asp-controller="Product" class="btn btn-primary">Thêm sản phẩm mới</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Tên sản phẩm
-        </th>
-        <th>
-            Ảnh đại diện
-        </th>
-        <th>
-            Tiêu biểu
-        </th>
-        <th>
-            Trạng thái
-        </th>
-        <th>
-            Xoá
-        </th>
-
-        <th>
-            Giá
-        </th>
-        <th>
-            Ngày đăng
-        </th>
-        <th>
-            Đơn vị tính
-        </th>
-        <th>
-            Chức năng
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-striped table-hover mt-4">
+    <thead class="table-dark">
         <tr>
-            <td>
-                @item.Ten
-            </td>
-            <td>
-                <img src="@item.AnhNho" width="100" height="100" />
-            </td>
-            <td>
-                @if (@item.TieuBieu == true)
-                {
-                    <span>Tiêu biểu</span>
-                }
-                else
-                {
-                    <span>Không tiêu biểu</span>
-                }
-            </td>
-            <td>
-                @if (@item.TrangThai == true)
-                {
-                    <span>Hoạt động</span>
-                }
-                else
-                {
-                    <span>Không hoạt động</span>
-                }
-            </td>
-            <td>
-                @if (@item.Xoa == true)
-                {
-                    <span>có</span>
-                }
-                else
-                {
-                    <span>Không</span>
-                }
-            </td>
-            <td>
-                @Convert.ToDecimal(item.Gia).ToString("##,#")
-            </td>
-
-            <td>
-                @item.NgayDang
-            </td>
-            <td>
-                @item.Dvt
-            </td>
-
-            <td>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Product" asp-route-id="@item.Ma">Sửa</a>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">Chi tiết</a>
-                <a class="btn btn-success" asp-area="Admin" asp-action="Delete" asp-controller="Product" asp-route-id="@item.Ma">Xóa</a>
-            </td>
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Tiêu biểu</th>
+            <th>Trạng thái</th>
+            <th>Xoá</th>
+            <th>Giá</th>
+            <th>Ngày đăng</th>
+            <th>Đơn vị tính</th>
+            <th>Hành động</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ten</td>
+                <td>
+                    <img src="@item.AnhNho" width="100" height="100" class="img-thumbnail" />
+                </td>
+                <td>
+                    @if (@item.TieuBieu == true)
+                    {
+                        <span class="badge bg-success">Tiêu biểu</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Không tiêu biểu</span>
+                    }
+                </td>
+                <td>
+                    @if (@item.TrangThai == true)
+                    {
+                        <span class="badge bg-primary">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Không hoạt động</span>
+                    }
+                </td>
+                <td>
+                    @if (@item.Xoa == true)
+                    {
+                        <span class="badge bg-warning">Có</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-info">Không</span>
+                    }
+                </td>
+                <td>@Convert.ToDecimal(item.Gia).ToString("##,#")</td>
+                <td>@item.NgayDang</td>
+                <td>@item.Dvt</td>
+                <td>
+                    <a class="btn btn-sm btn-success" asp-area="Admin" asp-action="Edit" asp-controller="Product" asp-route-id="@item.Ma">Sửa</a>
+                    <a class="btn btn-sm btn-info" asp-area="Admin" asp-action="Details" asp-controller="Product" asp-route-id="@item.Ma">Chi tiết</a>
+                    <a class="btn btn-sm btn-danger" asp-area="Admin" asp-action="Delete" asp-controller="Product" asp-route-id="@item.Ma">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-<div class="text-center" id="sp_area">
-    <pagination 
-        asp-page="Index" 
-        asp-controller="Product" 
-        asp-route-page="@(Model.PageNumber)" 
-        total-pages="@Model.PageCount" 
-        class="pagination" 
-        ajax="true" 
-        update-target-id="sp_area">
-    </pagination>
-</div>
+
 

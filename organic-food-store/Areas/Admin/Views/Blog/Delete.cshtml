@@ -5,97 +5,55 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xoá tin tức</h2>
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            Mã CM
-        </dt>
+<h2 class="mt-4 text-center">Xóa tin tức</h2>
+<div class="container mt-3">
+    <dl class="row">
+        <dt class="col-sm-3">Mã CM</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MaCm)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaCm)
+        <dt class="col-sm-3">Mô tả ngắn</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MotaNgan)</dd>
+
+        <dt class="col-sm-3">Mô tả</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Mota)</dd>
+
+        <dt class="col-sm-3">Ngày đăng</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NgayDang)</dd>
+
+        <dt class="col-sm-3">Ảnh</dt>
+        <dd class="col-sm-9">
+            <img src="@Html.DisplayFor(model => model.Anh)" height="100" width="100" class="img-thumbnail" onerror="this.onerror=null; this.src='default-image.png';" />
         </dd>
 
-        <dt>
-            Mô tả ngắn
-        </dt>
+        <dt class="col-sm-3">Người đăng</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NguoiDang)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MotaNgan)
-        </dd>
-
-        <dt>
-            Mô tả
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Mota)
-        </dd>
-
-        <dt>
-            Ngày đăng
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayDang)
-        </dd>
-
-        <dt>
-            Ảnh
-        </dt>
-
-        <dd>
-            <img src="@Html.DisplayFor(model => model.Anh)" height="100px" width="100px" />
-        </dd>
-
-        <dt>
-            Người đăng
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDang)
-        </dd>
-
-        <dt>
-            Tiêu biểu
-        </dt>
-
-        <dd>
-            @if(Model.TieuBieu == true)
+        <dt class="col-sm-3">Tiêu biểu</dt>
+        <dd class="col-sm-9">
+            @if (Model.TieuBieu== true)
             {
-            <span>Tiêu biểu</span>
+                <span class="badge bg-success">Tiêu biểu</span>
             }
             else
             {
-            <span>Không tiêu biểu</span>
+                <span class="badge bg-secondary">Không tiêu biểu</span>
             }
         </dd>
 
-        <dt>
-            Loại tin
-        </dt>
+        <dt class="col-sm-3">Loại tin</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.LoaiTin)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTin)
-        </dd>
-
-        <dt>
-            Tên
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaCmNavigation.Ten)
-        </dd>
-
+        <dt class="col-sm-3">Tên</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.MaCmNavigation.Ten)</dd>
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Xoá" class="btn btn-success" />
-            <a asp-action="Index" asp-controller="Blog" asp-area="Admin" class="btn btn-success">Trở về danh sách</a>
+        <div class="form-actions mt-4">
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a asp-action="Index" asp-controller="Blog" asp-area="Admin" class="btn btn-secondary">Trở về danh sách</a>
         </div>
     }
 </div>

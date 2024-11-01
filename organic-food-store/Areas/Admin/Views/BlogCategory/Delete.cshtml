@@ -5,30 +5,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xoá chuyên mục</h2>
-<div>
-    <dl class="dl-horizontal">
-        <dt>Tên</dt>
-        <dd>
-            <span asp-for="@Model.Ten"></span>
+<h2 class="mt-4">Xoá chuyên mục</h2>
+<div class="card p-4">
+    <dl class="row">
+        <dt class="col-sm-3">Tên</dt>
+        <dd class="col-sm-9">
+            <span>@Model.Ten</span>
         </dd>
 
-        <dt>Mô tả</dt>
-        <dd>
-            <span asp-for="@Model.Mota"></span>
+        <dt class="col-sm-3">Mô tả</dt>
+        <dd class="col-sm-9">
+            <span>@Model.Mota</span>
         </dd>
 
-        <dt>Mã CT</dt>
-        <dd>
-            <span asp-for="@Model.MaCt"></span>
+        <dt class="col-sm-3">Mã CT</dt>
+        <dd class="col-sm-9">
+            <span>@Model.MaCt</span>
         </dd>
     </dl>
 
     <form asp-area="Admin" asp-action="Delete" asp-controller="BlogCategory" method="post">
         @Html.AntiForgeryToken() <!-- Thêm mã bảo vệ CSRF -->
-        <div class="form-actions no-color">
-            <button type="submit" class="btn btn-success">Xoá</button>
-            <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-success">Trở về danh sách</a>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Xoá</button>
+            <a asp-area="Admin" asp-action="Index" asp-controller="BlogCategory" class="btn btn-secondary">Trở về danh sách</a>
         </div>
     </form>
 </div>

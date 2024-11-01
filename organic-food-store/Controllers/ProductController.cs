@@ -24,7 +24,7 @@ namespace organic_food_store.Controllers
             if (product == null)
             {
                 ViewBag.pSameType = _dbContext.Sps.ToList();
-                product = new Sp();
+                product = _dbContext.Sps.FirstOrDefault();
             }
             else
             {

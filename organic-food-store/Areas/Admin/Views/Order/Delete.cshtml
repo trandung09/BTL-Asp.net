@@ -8,99 +8,48 @@
 <h2>Xóa đơn hàng</h2>
 
 <h3>Bạn có chắc chắn muốn xóa đơn hàng này?</h3>
+
 <div>
-    <h4>Don Hang</h4>
+    <h4>Thông tin đơn hàng</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDat)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.NgayDat)</dt>
+        <dd>@Html.DisplayFor(model => model.NgayDat)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDat)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.NgayGiao)</dt>
+        <dd>@Html.DisplayFor(model => model.NgayGiao)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayGiao)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.PhiGiao)</dt>
+        <dd>@Html.DisplayFor(model => model.PhiGiao)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayGiao)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.TenNguoiNhan)</dt>
+        <dd>@Html.DisplayFor(model => model.TenNguoiNhan)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhiGiao)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.DiaChi)</dt>
+        <dd>@Html.DisplayFor(model => model.DiaChi)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhiGiao)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.DienThoai)</dt>
+        <dd>@Html.DisplayFor(model => model.DienThoai)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNguoiNhan)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenNguoiNhan)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.TrangThai)</dt>
+        <dd>@Html.DisplayFor(model => model.TrangThai)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.PhuongThucTt)</dt>
+        <dd>@Html.DisplayFor(model => model.PhuongThucTt)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongThucTt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhuongThucTt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKhNavigation.Ten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaKhNavigation.Ten)
-        </dd>
-
+        <dt>@Html.DisplayNameFor(model => model.MaKhNavigation.Ten)</dt>
+        <dd>@Html.DisplayFor(model => model.MaKhNavigation.Ten)</dd>
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-area="Admin" asp-action="Index" asp-controller="Order">Qay trở về danh sách</a>
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a asp-area="Admin" asp-action="Index" asp-controller="Order" class="btn btn-secondary">Quay trở về danh sách</a>
         </div>
     }
 </div>
