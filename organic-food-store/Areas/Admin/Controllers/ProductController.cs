@@ -69,7 +69,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         // GET: Admin/Product/Create
-        [HttpPost]
+
         public IActionResult Create()
         {
             // Sử dụng SlectList tạo dropdown menu
