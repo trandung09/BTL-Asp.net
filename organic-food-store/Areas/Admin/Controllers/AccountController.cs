@@ -56,11 +56,11 @@ namespace organic_food_store.Areas.Admin.Controllers
             var adminFindByUsername = _dbContext.NguoiDungs.Where(a => a.TenDangNhap.Equals(username)).ToList();
             var adminFindByEmail = _dbContext.NguoiDungs.Where(a => a.Email.Equals(email)).ToList();
 
-            if (adminFindByUsername.Count > 0)
+            if (adminFindByUsername.Count() > 0)
             {
                 ViewBag.message = "Trùng tên đăng nhập.";
             }
-            else if (adminFindByEmail.Count > 0)
+            else if (adminFindByEmail.Count() > 0)
             {
                 ViewBag.message = "Email đã được đăng kí.";
             }
@@ -82,7 +82,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 ViewBag.message = "Đăng kí tài khoản thành công.";
             }
 
-            return RedirectToAction("Register", "Account", new {area = "Admin"});
+            return View();
         }
 
         [HttpGet]
@@ -146,7 +146,7 @@ namespace organic_food_store.Areas.Admin.Controllers
             EmailModel mail = new EmailModel();
             {
                 mail.SenderEmail = "trandung09082004@gmail.com";
-                mail.SenderEmailPassword = "trandung"; // Cần tạo password trên Google account security
+                mail.SenderEmailPassword = "btuk waer mogd dxjv"; // Cần tạo password trên Google account security
                 mail.RecipientEmail = recipientEmail;
                 mail.Content = $"Đây là mật khẩu của bạn, hãy giữ kín. Mật khẩu là: <b>{admin.MatKhau}</b>.";
                 mail.Topic = "Cấp lại mật khẩu.";

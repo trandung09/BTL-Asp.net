@@ -32,9 +32,7 @@ namespace organic_food_store.Areas.Admin.Controllers
 
                 var products = _dbContext.Sps.Include(p => p.MaLoaiNavigation);
 
-                // ToPageList không là một chuẩn trong LNIQ => nó đến từ thư viện PagedList.Mvc
-                // Thực hiên phân trang (Paging)
-                return View(_dbContext.Sps.ToList());
+                return View(_dbContext.Sps.OrderByDescending(P => P.NgayDang).ToList());
             }
 
             return RedirectToAction("LogIn", "Admin", new {area = "Admin"});

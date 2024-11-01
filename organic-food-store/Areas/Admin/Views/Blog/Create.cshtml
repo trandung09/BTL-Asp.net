@@ -30,7 +30,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Mô tả</label>
             <div class="col-md-10">
-                <textarea asp-for="Mota" class="form-control"></textarea>
+                <textarea asp-for="Mota" class="form-control" id="Mota"></textarea>
                 <script type="text/javascript">
                     CKEDITOR.replace("Mota");
                 </script>
@@ -47,15 +47,11 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ảnh</label>
             <div class="col-md-10">
-                <div class="col-md-4">
+                <div class="input-group">
                     <input asp-for="Anh" id="Anh" class="form-control" />
+                    <button type="button" class="btn btn-default" id="browse">Browse</button>
                 </div>
-                <div class="col-md-2">
-                    <input type="button" class="btn btn-default" id="browse" value="browse" />
-                </div>
-                <div class="col-md-3">
-                    <img src="#" id="anhtin" width="50" height="50" />
-                </div>
+                <img src="#" id="anhtin" width="50" height="50" class="img-thumbnail mt-2" style="display: none;" />
             </div>
         </div>
 
@@ -65,7 +61,7 @@
                     var finder = new CKFinder();
                     finder.selectActionFunction = function (fileUrl) {
                         $("#Anh").val(fileUrl);
-                        $("#anhtin").attr("src", fileUrl);
+                        $("#anhtin").attr("src", fileUrl).show();
                     }
                     finder.popup();
                 });
@@ -82,9 +78,12 @@
         <div class="form-group">
             <label class="control-label col-md-2">Tiêu biểu</label>
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.TieuBieu ?? false)
-                    <label asp-for="TieuBieu"></label>
+                <div class="form-check">
+                    @{
+                        bool isTieuBieu = false;
+                    }
+                    @Html.CheckBoxFor(model => isTieuBieu, new { @class = "form-check-input" })
+                    <label asp-for="TieuBieu" class="form-check-label">Đánh dấu tiêu biểu</label>
                 </div>
             </div>
         </div>

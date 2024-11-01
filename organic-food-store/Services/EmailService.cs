@@ -17,7 +17,7 @@ namespace organic_food_store.Services
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = string.Format(mail.Content);
 
-                var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587)
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
                     Credentials = new NetworkCredential(mail.SenderEmail, mail.SenderEmailPassword),
                     EnableSsl = true,

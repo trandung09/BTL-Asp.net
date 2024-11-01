@@ -14,8 +14,7 @@
         <tr>
             <th>Tên người nhận</th>
             <th>Ngày đặt</th>
-            <th>Ngày giao</th>
-            <th>Phí giao</th>
+            <th>Tổng tiền</th>
             <th>Địa chỉ</th>
             <th>Điện thoại</th>
             <th>Email</th>
@@ -35,12 +34,20 @@
                     @Html.DisplayFor(modelItem => item.NgayDat)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayGiao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhiGiao)
-                </td>
+                    @{
+                        var totalPrice = 0.0;
+                        var orderDetails = (List<ChiTietDonHang>) ViewBag.orderDetails;
 
+                        foreach (var orderDetail in orderDetails)
+                        {
+                            if (orderDetail.MaDh == item.Ma)
+                            {
+                                totalPrice += (double)orderDetail.SoLuong * (double)orderDetail.DonGia;
+                            }
+                        }
+                    }
+                    @totalPrice đ
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>

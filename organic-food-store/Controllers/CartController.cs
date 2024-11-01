@@ -156,7 +156,7 @@ namespace organic_food_store.Controllers
             EmailModel emailModel = new EmailModel(); // Khởi tạo email model cho việc gửi mail
             {
                 emailModel.SenderEmail = "trandung09082004@gmail.com";
-                emailModel.SenderEmailPassword = "trandung";
+                emailModel.SenderEmailPassword = "btuk waer mogd dxjv";
                 emailModel.RecipientEmail = email;
                 
                 string content = "Cảm ơn quý khách đã đặt hàng tại Good-Market <br/> Mã đơn hàng của quý khách là : <b>" + newOrder.Ma + "</b> <br> Đơn hàng của quý khách gồm : <br>";

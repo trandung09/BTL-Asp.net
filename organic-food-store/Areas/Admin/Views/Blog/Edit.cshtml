@@ -34,7 +34,7 @@
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Mô tả</label>
             <div class="col-sm-10">
-                @Html.TextAreaFor(model => model.Mota, new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.Mota, new { @class = "form-control", id = "Mota" })
                 <script type="text/javascript">
                     CKEDITOR.replace("Mota");
                 </script>
@@ -65,7 +65,7 @@
                 finder.selectActionFunction = function (fileUrl) {
                     $("#Anh").val(fileUrl);
                     $("#anhtin").attr("src", fileUrl).show();
-                }
+                };
                 finder.popup();
             });
         </script>
@@ -82,7 +82,10 @@
             <label class="col-sm-2 col-form-label">Tiêu biểu</label>
             <div class="col-sm-10">
                 <div class="form-check">
-                    @Html.CheckBoxFor(model => model.TieuBieu ?? false, new { @class = "form-check-input" })
+                    @{
+                        bool isTieuBieu = Model.TieuBieu ?? false;
+                    }
+                    @Html.CheckBoxFor(model => isTieuBieu, new { @class = "form-check-input" })
                     @Html.ValidationMessageFor(model => model.TieuBieu, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -25,6 +25,7 @@ namespace organic_food_store.Areas.Admin.Controllers
             if (HttpContext.Session.GetString("AdminName") != null)
             {
                 var orders = _dbContext.DonHangs.Include(d => d.MaKhNavigation);
+                ViewBag.orderDetails = _dbContext.ChiTietDonHangs.ToList();
                 return View(await orders.ToListAsync());
             }
             return RedirectToAction("LogIn", "Account");
@@ -41,6 +42,8 @@ namespace organic_food_store.Areas.Admin.Controllers
                     || (o.NgayDat.Value.Month == DateTime.Now.Month - 1 
                     && 30 - o.NgayDat.Value.Day + DateTime.Now.Day < 7)) 
                     );
+
+                ViewBag.orderDetails = _dbContext.ChiTietDonHangs.ToList();
                 return View(await orders.ToListAsync());
             }
             return RedirectToAction("LogIn", "Account");

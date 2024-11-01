@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using organic_food_store.Models;
-using PagedList;
 
 namespace organic_food_store.Areas.Admin.Controllers
 {
@@ -23,8 +22,8 @@ namespace organic_food_store.Areas.Admin.Controllers
         {
             if (HttpContext.Session.GetString("AdminName") != null)
             {
-                var organicFoodStoreContext = _dbContext.TinTucs.Include(t => t.MaCmNavigation);
-                return View(await organicFoodStoreContext.ToListAsync());
+                var blogs = _dbContext.TinTucs.Include(t => t.MaCmNavigation);
+                return View(await blogs.OrderByDescending(b => b.NgayDang).ToListAsync());
             }
             return RedirectToAction("LogIn", "Account");
         }
@@ -48,7 +47,6 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         // GET: Admin/Blog/Create
-        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.MaCm = new SelectList(_dbContext.ChuyenMucs, "Ma", "Ten");
