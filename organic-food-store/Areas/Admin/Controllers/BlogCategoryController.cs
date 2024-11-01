@@ -147,29 +147,12 @@ namespace organic_food_store.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), new {area = "Admin"});
         }
 
-        public IActionResult Search(int? page)
+
+        public IActionResult Search(string keyWord)
         {
-            if (page == null)
-            {
-                page = 1;
-            }
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
-
-            return View(_dbContext.ChuyenMucs.OrderByDescending(s => s.Ma).ToPagedList(pageNumber, pageSize));
-        }
-
-        public IActionResult Search(int? page, string keyWord)
-        {
-            var blogs = _dbContext.ChuyenMucs.Where(b => b.Ten.Contains(keyWord)).ToList();
-            if (page == null)
-            {
-                page = 1;
-            }
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
-
-            return View(blogs.OrderByDescending(s => s.Ma).ToPagedList(pageNumber, pageSize));
+            var blogCategory = _dbContext.ChuyenMucs.Where(b => b.Ten.Contains(keyWord)).ToList();
+            
+            return View(blogCategory);
         }
 
         private bool BlogCategoryExists(int id)

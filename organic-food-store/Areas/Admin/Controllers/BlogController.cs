@@ -154,30 +154,25 @@ namespace organic_food_store.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Search(int? page)
-        {
-            if (page == null)
-            {
-                page = 1;
-            }
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
-            return View(_dbContext.TinTucs.OrderByDescending(b => b.Ma).ToPagedList(pageNumber, pageSize));
-        }
+        //public ActionResult Search(int? page)
+        //{
+        //    return View(_dbContext.TinTucs.OrderByDescending(b => b.Ma).ToList());
+        //}
 
-        public ActionResult Search(int? page, string keyWord)
+        public ActionResult Search(string? keyWord)
         {
-            var blogs = _dbContext.TinTucs.Where(b => b.MotaNgan.Contains(keyWord)).ToList();
-            ViewBag.Count = blogs.Count();
+            List<TinTuc> blogs = null;
+            if (keyWord == null)
+            {
+                blogs = _dbContext.TinTucs.ToList();
+            }
+            else
+            {
+                blogs = _dbContext.TinTucs.Where(b => b.MotaNgan.Contains(keyWord)).ToList();
+            }
             
-            if (page == null)
-            {
-                page = 1;
-            }
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
 
-            return View(blogs.OrderByDescending(b => b.Ma).ToPagedList(pageNumber, pageSize));
+            return View(blogs.OrderByDescending(b => b.Ma).ToList());
         }
 
         private bool BlogExists(int id)

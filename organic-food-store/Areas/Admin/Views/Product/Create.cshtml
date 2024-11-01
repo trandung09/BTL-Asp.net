@@ -1,13 +1,14 @@
 ﻿@model Sp
 
 @{
-    ViewBag.Title = "Admin - Thêm mới sản phẩm";
+    ViewBag.Title = "Admin - Thêm sản phẩm mới";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Thêm sảm phẩm mới</h2>
 
-<form asp-action="Create" asp-controller="Product" asp-area="Admin" method="post">
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -206,7 +207,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ngày đăng</label>
             <div class="col-md-10">
-                <input type="date" name="Ngaydang" class="form-control" required />
+                <input type="date" name="NgayDang" class="form-control" required />
             </div>
         </div>
 
@@ -224,8 +225,8 @@
             </div>
         </div>
     </div>
-</form>
+}
 
 <div>
-    <a asp-area="Admin" asp-action="Index" asp-controller="Product" class="btn btn-success">Trở về Danh sách</a>
+    <a asp-action="Index" asp-controller="Product" asp-area="Admin" class="btn btn-success">Trở về Danh sách</a>
 </div>

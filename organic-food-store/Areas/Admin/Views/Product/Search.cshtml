@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Sp>
+﻿@model IEnumerable<Sp>
 @using PagedList.Mvc;
 
 @{
@@ -88,24 +88,4 @@
             }
         </tbody>
     </table>
-
-    <div class="text-center">
-        @for (var i = 1; i <= Model.PageCount; i++)
-        {
-            <a href="javascript:void(0);" class="btn btn-outline-primary mx-1" onclick="loadPage(@i);">@i</a>
-        }
-    </div>
 </div>
-
-<script>
-    function loadPage(pageNumber) {
-        $.ajax({
-            url: '@Url.Action("Timkiem")',
-            type: 'POST',
-            data: { page: pageNumber, keyword: $('input[name="keyWord"]').val() },
-            success: function (data) {
-                $('#sp_area').html(data); // Cập nhật nội dung của phần tử có id là "sp_area"
-            }
-        });
-    }
-</script>

@@ -16,21 +16,21 @@
         <div class="form-group">
             <label class="control-label col-md-2">Chuyên mục</label>
             <div class="col-md-10">
-                <select asp-for="@Model.MaCmNavigation" class="form-control" asp-items="@ViewBag.MaCm"></select>
+                <select asp-for="MaCm" class="form-control" asp-items="@ViewBag.MaCm"></select>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Tên</label>
             <div class="col-md-10">
-                <textarea asp-for="@Model.MotaNgan" class="form-control"></textarea>
+                <textarea asp-for="MotaNgan" class="form-control"></textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Mô tả</label>
             <div class="col-md-10">
-                <textarea asp-for="@Model.Mota" class="form-control"></textarea>
+                <textarea asp-for="Mota" class="form-control"></textarea>
                 <script type="text/javascript">
                     CKEDITOR.replace("Mota");
                 </script>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ngày đăng</label>
             <div class="col-md-10">
-                <input asp-for="@Model.NgayDang" type="date" class="form-control" />
+                <input asp-for="NgayDang" type="date" class="form-control" />
             </div>
         </div>
 
@@ -48,7 +48,7 @@
             <label class="control-label col-md-2">Ảnh</label>
             <div class="col-md-10">
                 <div class="col-md-4">
-                    <input asp-for="@Model.Anh" class="form-control" />
+                    <input asp-for="Anh" id="Anh" class="form-control" />
                 </div>
                 <div class="col-md-2">
                     <input type="button" class="btn btn-default" id="browse" value="browse" />
@@ -60,20 +60,22 @@
         </div>
 
         <script type="text/javascript">
-            $("#browse").click(function () {
-                var finder = new CKFinder();
-                finder.selectActionFunction = function (fileUrl) {
-                    $("#Anh").val(fileUrl);
-                    $("#anhtin").attr("src", fileUrl);
-                }
-                finder.popup();
+            $(document).ready(function () {
+                $("#browse").click(function () {
+                    var finder = new CKFinder();
+                    finder.selectActionFunction = function (fileUrl) {
+                        $("#Anh").val(fileUrl);
+                        $("#anhtin").attr("src", fileUrl);
+                    }
+                    finder.popup();
+                });
             });
         </script>
 
         <div class="form-group">
             <label class="control-label col-md-2">Người đăng</label>
             <div class="col-md-10">
-                <input asp-for="@Model.NguoiDang" class="form-control" />
+                <input asp-for="NguoiDang" class="form-control" />
             </div>
         </div>
 
@@ -81,8 +83,8 @@
             <label class="control-label col-md-2">Tiêu biểu</label>
             <div class="col-md-10">
                 <div class="checkbox">
-                    <input asp-for="@Model.TieuBieu" type="checkbox" />
-                    <label asp-for="@Model.TieuBieu"></label>
+                    @Html.CheckBoxFor(model => model.TieuBieu ?? false)
+                    <label asp-for="TieuBieu"></label>
                 </div>
             </div>
         </div>
@@ -90,7 +92,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Loại tin</label>
             <div class="col-md-10">
-                <input asp-for="@Model.LoaiTin" class="form-control" />
+                <input asp-for="LoaiTin" class="form-control" />
             </div>
         </div>
 
@@ -103,5 +105,5 @@
 </form>
 
 <div>
-    <a asp-controller="Blog" asp-action="Index" class="btn btn-success">Trở về danh sách</a>
+    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-success">Trở về danh sách</a>
 </div>

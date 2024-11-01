@@ -139,7 +139,7 @@ namespace organic_food_store.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SpExists(product.Ma))
+                    if (!ProductExists(product.Ma))
                     {
                         return NotFound();
                     }
@@ -188,7 +188,7 @@ namespace organic_food_store.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SpExists(int id)
+        private bool ProductExists(int id)
         {
             return _dbContext.Sps.Any(e => e.Ma == id);
         }
@@ -196,14 +196,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Search(int? page)
         {
-            if (page == null)
-            {
-                page = 1;
-            }
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
-
-            return View(_dbContext.Sps.OrderByDescending(p => p.Ma).ToPagedList(pageNumber, pageSize));
+            return View(_dbContext.Sps.OrderByDescending(p => p.Ma).ToList());
         }
 
         [HttpPost]
@@ -219,7 +212,7 @@ namespace organic_food_store.Areas.Admin.Controllers
             int pageSize = 2;
             int pageNumber = (page ?? 1);
 
-            return View(products.OrderByDescending(p => p.Ma).ToPagedList(pageNumber, pageSize));
+            return View(products.OrderByDescending(p => p.Ma).ToList());
         }
     }
 }

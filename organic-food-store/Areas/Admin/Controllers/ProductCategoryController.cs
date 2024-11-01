@@ -55,7 +55,7 @@ namespace organic_food_store.Areas.Admin.Controllers
         }
 
         // GET: Admin/Category/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }

@@ -34,7 +34,7 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="maloai">Mã loại</label>
             <div class="col-md-10">
-                @Html.DropDownList("maloai", null, new { @class = "form-control" })
+                @Html.DropDownList("MaLoai", (SelectList) ViewBag.MaLoai, new { @class = "form-control" })
             </div>
         </div>
 
