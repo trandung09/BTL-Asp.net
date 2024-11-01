@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using organic_food_store.Models;
 
 namespace organic_food_store.ViewComponents
@@ -14,7 +15,7 @@ namespace organic_food_store.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var blogs = _dbContext.TinTucs.Where(b => b.TieuBieu == true && b.LoaiTin == null).ToList();
+            var blogs = await _dbContext.TinTucs.Where(b => b.LoaiTin == null).ToListAsync();
 
             return View("Index", blogs);
         }

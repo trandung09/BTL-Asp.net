@@ -44,8 +44,16 @@ namespace organic_food_store.Controllers
         public ActionResult BlogDetails(int id) // Chi tiết tin tức
         {
             var blog = _dbContext.TinTucs.Find(id);
-            ViewBag.otherBlogs = _dbContext.TinTucs.Where(b => b.LoaiTin == blog.LoaiTin).Take(4).ToList();
+            if (blog == null)
+            {
+                ViewBag.otherBlogs = _dbContext.TinTucs.ToList();
+                blog = _dbContext.TinTucs.ToList().FirstOrDefault();
 
+            }
+            else
+            {
+                ViewBag.otherBlogs = _dbContext.TinTucs.Where(b => b.LoaiTin == blog.LoaiTin).Take(4).ToList();
+            }
             return View(blog);
         }
 
