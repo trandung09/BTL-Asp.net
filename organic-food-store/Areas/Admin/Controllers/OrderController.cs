@@ -30,6 +30,22 @@ namespace organic_food_store.Areas.Admin.Controllers
             return RedirectToAction("LogIn", "Account");
         }
 
+        public async Task<IActionResult> NewIndex()
+        {
+            if (HttpContext.Session.GetString("AdminName") != null)
+            {
+                var orders = _dbContext.DonHangs.Include(d => d.MaKhNavigation)
+                    .Where(o => o.NgayDat.Value.Year == DateTime.Now.Year
+                    && ((o.NgayDat.Value.Month == DateTime.Now.Month
+                    && DateTime.Now.Day - o.NgayDat.Value.Day < 6)
+                    || (o.NgayDat.Value.Month == DateTime.Now.Month - 1 
+                    && 30 - o.NgayDat.Value.Day + DateTime.Now.Day < 7)) 
+                    );
+                return View(await orders.ToListAsync());
+            }
+            return RedirectToAction("LogIn", "Account");
+        }
+
         // GET: Admin/Order/Details/5
         public async Task<IActionResult> Details(int? id)
         {

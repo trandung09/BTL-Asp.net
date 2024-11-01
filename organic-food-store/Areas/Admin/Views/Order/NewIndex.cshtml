@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DonHang>
+
+@{
+    ViewBag.Title = "Admin - Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mt-4">Danh sách đơn hàng</h2>
+<p>
+    <a asp-action="Create" asp-controller="Order" class="btn btn-primary">Thêm đơn hàng mới</a>
+</p>
+<table class="table table-striped table-hover mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Tên người nhận</th>
+            <th>Ngày đặt</th>
+            <th>Ngày giao</th>
+            <th>Phí giao</th>
+            <th>Địa chỉ</th>
+            <th>Điện thoại</th>
+            <th>Email</th>
+            <th>Trạng thái</th>
+            <th>Phương thức thanh toán</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhiGiao)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhuongThucTt)
+                </td>
+                <td>
+                    <a asp-area="Admin" asp-action="Edit" asp-controller="Order" asp-route-id="@item.Ma" class="btn btn-sm btn-success">Sửa</a>
+                    <a asp-area="Admin" asp-action="Delete" asp-controller="Order" asp-route-id="@item.Ma" class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
