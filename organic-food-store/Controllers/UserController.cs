@@ -91,7 +91,7 @@ namespace organic_food_store.Controllers
         [HttpPost]
         public ActionResult ForgotPassword(string recipientEmail)
         {
-            var user = _dbContext.KhachHangs.Find(recipientEmail);
+            var user = _dbContext.KhachHangs.Where(u => u.Email.Equals(recipientEmail)).FirstOrDefault();
 
             if (user == null)
             {
@@ -102,7 +102,7 @@ namespace organic_food_store.Controllers
             EmailModel mail = new EmailModel();
             {
                 mail.SenderEmail = "trandung09082004@gmail.com";
-                mail.SenderEmailPassword = "trandung"; // Cần tạo password trên Google account security
+                mail.SenderEmailPassword = "btuk waer mogd dxjv"; // Cần tạo password trên Google account security
                 mail.RecipientEmail = recipientEmail;
                 mail.Content = $"Đây là mật khẩu của bạn, hãy giữ kín. Mật khẩu là: <b>{user.Password}</b>.";
                 mail.Topic = "Cấp lại mật khẩu.";
