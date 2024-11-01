@@ -61,9 +61,9 @@ namespace organic_food_store.Controllers
             return View(product);
         }
 
-        public ActionResult Search(string query)
+        public ActionResult Search(string keyWord)
         {
-            var products = _dbContext.Sps.Where(p => p.Ten.Contains(query)).ToList();
+            var products = _dbContext.Sps.Where(p => p.Ten.Contains(keyWord)).ToList();
             ViewBag.count = products.Count();
 
             return View(products);
